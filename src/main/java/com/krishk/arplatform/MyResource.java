@@ -1,15 +1,25 @@
 package com.krishk.arplatform;
 
+import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.*;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
+@Path("locate")
+@Singleton
 public class MyResource {
+    private Structures structures;
+
+    /**
+     * This constructor will be called only once, since this is a Singleton class
+     */
+    public MyResource() {
+        structures = new Structures();
+    }
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -18,8 +28,11 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-        return "Hello, Heroku!";
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLocate(@Context UriInfo uriInfo) {
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        GeoPoint current_location = new GeoPoint(queryParams.getFirst("lati"), queryParams.getFirst("long"));
+        structures.locateStructure(current_location);
+        return Response.status(200).entity("This works").build();
     }
 }
