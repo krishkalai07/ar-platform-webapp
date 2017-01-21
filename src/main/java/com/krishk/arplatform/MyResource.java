@@ -34,7 +34,7 @@ public class MyResource {
         String latitude = queryParams.getFirst("lati");
         String longitiude = queryParams.getFirst("long");
         GeoPoint current_location = new GeoPoint(latitude, longitiude);
-        //structures.locateStructure(current_location);
+        structures.locateStructure(current_location);
         return Response.ok().build();
     }
 }
