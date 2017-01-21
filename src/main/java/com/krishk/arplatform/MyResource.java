@@ -30,7 +30,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLocate(@Context UriInfo uriInfo) {
-        //MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         //GeoPoint current_location = new GeoPoint(queryParams.getFirst("lati"), queryParams.getFirst("long"));
         //structures.locateStructure(current_location);
         return Response.ok().build();
