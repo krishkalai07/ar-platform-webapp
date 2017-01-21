@@ -18,7 +18,7 @@ public class MyResource {
      * This constructor will be called only once, since this is a Singleton class
      */
     public MyResource() {
-        //structures = new Structures();
+        structures = new Structures();
     }
 
     /**
