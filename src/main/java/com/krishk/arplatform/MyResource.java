@@ -33,6 +33,6 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         GeoPoint current_location = new GeoPoint(queryParams.getFirst("lati"), queryParams.getFirst("long"));
         structures.locateStructure(current_location);
-        return Response.status(200).entity("This works").build();
+        return Response.ok().build();
     }
 }
