@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
+import java.util.ArrayList;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -36,8 +37,14 @@ public class MyResource {
         GeoPoint current_location = new GeoPoint(latitude, longitiude);
         structures.locateStructure(current_location);
 
-        //return Response.ok().build();
-        String str = structures.getJsonList().toString();
-        return Response.status(200).entity(str).build();
+        //String str = structures.getJsonList().toString();
+
+        ArrayList<String> list = new ArrayList<>();
+        for (String str : structures.getJsonList().size()) {
+            list.add(str)
+        }
+
+        String ret_value = list.toString();
+        return Response.status(200).entity(ret_value).build();
     }
 }
