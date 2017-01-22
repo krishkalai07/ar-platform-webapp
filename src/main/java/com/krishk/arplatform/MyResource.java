@@ -40,6 +40,10 @@ public class MyResource {
 
         System.out.println("Size of structures: " + structures.getJsonList().size());
 
+        if (structures.getJsonList().size() == 1) {
+            structures.handleOutsideStructures();
+        }
+
         String ret_value = structures.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
     }
