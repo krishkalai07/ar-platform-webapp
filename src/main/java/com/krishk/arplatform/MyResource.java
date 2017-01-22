@@ -41,6 +41,6 @@ public class MyResource {
         //String str = structures.getJsonList().toString();
 
         String ret_value = structures.getJsonList().toString();
-        return Response.status(200).entity(ret_value).build(); //
+        return Response.status(200).entity(ret_value).build(); 
     }
 }
