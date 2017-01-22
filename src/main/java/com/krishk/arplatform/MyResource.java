@@ -38,6 +38,6 @@ public class MyResource {
         structures.locateStructure(current_location);
 
         //return Response.ok().build();
-        return Response.status(200).entity(structures.getJsonList()).build();
+        return Response.status(200).entity(structures.getJsonList().toString()).build();
     }
 }
