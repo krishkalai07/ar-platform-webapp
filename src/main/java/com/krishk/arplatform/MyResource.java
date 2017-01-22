@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
+import java.util.Vector;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -35,6 +36,8 @@ public class MyResource {
         String longitiude = queryParams.getFirst("long");
         GeoPoint current_location = new GeoPoint(latitude, longitiude);
         structures.locateStructure(current_location);
-        return Response.ok().build();
+
+        //return Response.ok().build();
+        return Response.status(200).entity(structures.getJsonList()).build();
     }
 }
