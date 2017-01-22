@@ -5,7 +5,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
-import java.util.Vector;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -38,6 +37,7 @@ public class MyResource {
         structures.locateStructure(current_location);
 
         //return Response.ok().build();
-        return Response.status(200).entity(structures.getJsonList().toString()).build();
+        String str = structures.getJsonList().toString();
+        return Response.status(200).entity(str).build();
     }
 }
