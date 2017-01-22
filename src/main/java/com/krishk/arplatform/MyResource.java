@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -39,12 +40,7 @@ public class MyResource {
 
         //String str = structures.getJsonList().toString();
 
-        ArrayList<String> list = new ArrayList<>();
-        for (String str : structures.getJsonList().size()) {
-            list.add(str)
-        }
-
-        String ret_value = list.toString();
+        String ret_value = structures.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
     }
 }
