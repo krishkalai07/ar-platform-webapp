@@ -1,11 +1,13 @@
 package com.krishk.arplatform;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 @SuppressWarnings("ALL")
 public class Structures {
     private Structure platform_node; //Root node of the tree
-    private Vector<String> json_list = new Vector<>();
+    //private Vector<String> json_list = new Vector<>();
+    private ArrayList<String> json_list = new ArrayList<>();
 
     Structures() {
         this.platform_node = new Structure(Type.PLATFORM, "Structures", "", 0, "");
@@ -36,7 +38,7 @@ public class Structures {
 
     }
 
-    public Vector<String> getJsonList() {
+    public ArrayList<String> getJsonList() {
         return json_list;
     }
 
