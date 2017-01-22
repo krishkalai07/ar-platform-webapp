@@ -38,7 +38,7 @@ public class MyResource {
         GeoPoint current_location = new GeoPoint(latitude, longitiude);
         structures.locateStructure(current_location);
 
-        //String str = structures.getJsonList().toString();
+        System.out.println("Size of structures: " + structures.getJsonList().size());
 
         String ret_value = structures.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
