@@ -56,6 +56,11 @@ public class Structures {
         locateStructuresHelper(point, platform_node);
     }
 
+    /**
+     *
+     * @param point
+     * @param node
+     */
     private void locateStructuresHelper(GeoPoint point, Structure node) {
         // Base case
         if (node == null) {
