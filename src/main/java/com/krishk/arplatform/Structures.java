@@ -13,6 +13,9 @@ public class Structures {
     private String Etag = "";
     private String structure_json_data = "";
 
+    /**
+     *
+     */
     Structures() {
         this.platform_node = new Structure(Type.PLATFORM, "Structures", "", 0, "");
 
