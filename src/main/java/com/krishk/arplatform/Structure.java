@@ -1,5 +1,7 @@
 package com.krishk.arplatform;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 import java.util.Vector;
 import org.json.*;
@@ -53,7 +55,7 @@ class GeoPoint {
 
 @SuppressWarnings("ALL")
 class Structure {
-    private UUID id;
+    private String id;
     private String name;
     private Type type;
     private Vector<GeoPoint> polygon;
@@ -75,7 +77,7 @@ class Structure {
     //
     // Getters
     //
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -148,9 +150,6 @@ class Structure {
     //
     // Utility functions
     //
-    UUID generateID() {
-        return UUID.randomUUID();
-    }
 
     private Vector<GeoPoint> constructPolygon (String polygon_data) {
         Vector<GeoPoint> polygon = new Vector<GeoPoint>();
@@ -263,5 +262,27 @@ class Structure {
         return_object.put("Children IDs", id_string);
 
         return return_object.toString();
+    }
+
+    private String generateID() {
+        StringBuilder hexString = new StringBuilder();
+        System.out.println("emply id: " + hexString.toString());
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(getName().getBytes());
+            byte[] digest = md.digest();
+
+            for (int i = 0; i < digest.length; i++) {
+                String hex = Integer.toHexString(0xFF & digest[i]);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("MD5 failed me");
+        }
+        System.out.println("id: " + hexString.toString());
+        return hexString.toString();
     }
 }

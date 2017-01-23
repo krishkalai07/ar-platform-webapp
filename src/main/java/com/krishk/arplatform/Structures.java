@@ -91,7 +91,7 @@ public class Structures {
     /**
      *
      */
-    private void constructEtagAndJSONData() {
+    private void constructJSONData() {
         ArrayList list = new ArrayList();
         String etag_string = "";
         for (int i = 0 ; i < platform_node.getChildrenNodes().size(); i++) {
