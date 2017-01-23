@@ -3,6 +3,7 @@ package com.krishk.arplatform;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("locate")
+@Path("v1")
 @Singleton
 public class MyResource {
     private Structures structures;
@@ -31,14 +32,15 @@ public class MyResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getLocate(@Context UriInfo uriInfo) {
+    @Path("locate/{id}")
+    public Response getLocate(@Context UriInfo uriInfo, @PathParam("id") String id) {
+        System.out.println("ID: " + id);
+
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String latitude = queryParams.getFirst("lati");
         String longitiude = queryParams.getFirst("long");
         GeoPoint current_location = new GeoPoint(latitude, longitiude);
         structures.locateStructure(current_location);
-
-        System.out.println("Size of structures: " + structures.getJsonList().size());
 
         if (structures.getJsonList().size() == 1) {
             structures.handleOutsideStructures();

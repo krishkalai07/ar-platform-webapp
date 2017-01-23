@@ -70,7 +70,9 @@ public class Structures {
         //System.out.println("Testing " + node.getName());
         if (node.isInsidePolygon(point)) {
             System.out.println("Found inside " + node.getName());
-            json_list.add(node.toJSON());
+            if (node != platform_node) {
+                json_list.add(node.toJSON());
+            }
             for (int i = 0; i < node.getChildrenNodes().size(); i++) {
                 locateStructuresHelper(point, node.getChildrenNodes().get(i));
             }
