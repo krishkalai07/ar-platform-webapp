@@ -91,6 +91,6 @@ public class Structures {
 
         Etag = etag_string;
 
-        MessageDigest md = MessageDigest.getInstance("MD5")
+        MessageDigest md = MessageDigest.getInstance("MD5");
     }
 }
