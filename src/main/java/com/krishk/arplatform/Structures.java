@@ -89,7 +89,7 @@ public class Structures {
         String etag_string = "";
         for (int i = 0 ; i < platform_node.getChildrenNodes().size(); i++) {
             list.add(platform_node.getChildrenNodes().get(i).toJSON());
-            etag_string += platform_node.getChildrenNodes().get(i).getId();
+            etag_string += platform_node.getChildrenNodes().get(i).getName();
         }
         structure_json_data = list.toString();
         System.out.println("JSON data: " + structure_json_data);
