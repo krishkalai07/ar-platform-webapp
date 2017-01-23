@@ -78,6 +78,9 @@ public class Structures {
         }
     }
 
+    /**
+     *
+     */
     private void constructEtagAndJSONData() {
         ArrayList list = new ArrayList();
         String etag_string = "";
