@@ -47,6 +47,7 @@ public class Structures {
         //polygon_data = ""; //TODO: needs to be created. maps.google.com is not accurate enough
         //Structure wing700_floor2_room710 = new Structure(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         //wing700_floor1.addChildNode(wing700_floor2_room710);
+        constructEtagAndJSONData();
     }
 
     public ArrayList<String> getJsonList() {
@@ -90,12 +91,15 @@ public class Structures {
         structure_json_data = list.toString();
         System.out.println("JSON data: " + structure_json_data);
 
-        Etag = etag_string;
-
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(etag_string.getBytes());
+            byte[] digest = md.digest();
+            Etag = new String(digest);
         } catch (NoSuchAlgorithmException e) {
             System.out.println("MD5 failed me");
         }
+
+        System.out.println("Etag: " + Etag);
     }
 }
