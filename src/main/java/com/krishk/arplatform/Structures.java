@@ -1,10 +1,7 @@
 package com.krishk.arplatform;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.Vector;
+import java.util.*;
 import java.security.MessageDigest;
 
 @SuppressWarnings("ALL")
@@ -95,6 +92,9 @@ public class Structures {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(etag_string.getBytes());
             byte[] digest = md.digest();
+
+            System.out.println(Arrays.toString(digest));
+
             Etag = new String(digest);
         } catch (NoSuchAlgorithmException e) {
             System.out.println("MD5 failed me");
