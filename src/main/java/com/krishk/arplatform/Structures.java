@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 
 @SuppressWarnings("ALL")
 public class Structures {
-    private HashMap<UUID, Structure> IDMap = new HashMap<>();
+    private HashMap<String, Structure> IDMap = new HashMap<>();
     private Structure platform_node; //Root node of the tree
     //private Vector<String> json_list = new Vector<>();
     private ArrayList<String> json_list = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Structures {
         //polygon_data = ""; //TODO: needs to be created. maps.google.com is not accurate enough
         //Structure wing700_floor2_room710 = new Structure(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         //wing700_floor1.addChildNode(wing700_floor2_room710);
-        constructEtagAndJSONData();
+        constructJSONData();
     }
 
     public ArrayList<String> getJsonList() {
