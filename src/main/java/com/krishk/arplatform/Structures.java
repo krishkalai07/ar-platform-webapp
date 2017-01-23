@@ -1,5 +1,6 @@
 package com.krishk.arplatform;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -91,6 +92,10 @@ public class Structures {
 
         Etag = etag_string;
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("MD5 failed me");
+        }
     }
 }
