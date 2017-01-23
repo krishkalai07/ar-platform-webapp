@@ -90,6 +90,7 @@ public class Structures {
         }
         structure_json_data = list.toString();
         System.out.println("JSON data: " + structure_json_data);
+        System.out.println("Etag_string: " + etag_string);
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
