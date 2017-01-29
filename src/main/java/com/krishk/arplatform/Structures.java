@@ -49,8 +49,8 @@ public class Structures {
         //wing700_floor1.addChildNode(wing700_floor2_room710);
         constructJSONDataAndEtag();
 
-        System.out.println("Constructor:: : ");
-        printMap(IDMap);
+        //System.out.println("Constructor:: : ");
+        //printMap(IDMap);
     }
 
     public ArrayList<String> getJsonList() {
@@ -134,6 +134,10 @@ public class Structures {
         return IDMap;
     }
 
+    public Structure getPlatform_node() {
+        return platform_node;
+    }
+
     public static void printMap(Map mp) {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
@@ -142,4 +146,6 @@ public class Structures {
             it.remove(); // avoids a ConcurrentModificationException
         }
     }
+
+
 }

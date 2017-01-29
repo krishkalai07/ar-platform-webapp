@@ -58,19 +58,8 @@ public class MyResource {
     @Path("structures")
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
-        String id = queryParams.getFirst("id");
-        HashMap<String, Structure> map = structures.getIDMap();
+        String etag = queryParams.getFirst("etag");
 
-        System.out.println("getStructures");
-        System.out.println(id);
-        //map.put(id, new Structure(Type.STRUCTURE, "d", "", 3, "dfa"));
-        System.out.println("Map " + map.get(id));
-
-        if(map.get(id) != null) {
-            return Response.status(200).entity(map.get(id).toString()).build();
-        }
-        else {
-            return Response.status(404).build();
-        }
+        return Response.status(200).entity(structures.getPlatform_node().getChildrenNodes()).build();
     }
 }
