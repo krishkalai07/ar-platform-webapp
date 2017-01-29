@@ -58,7 +58,7 @@ public class Structures {
     }
 
     void locateStructure(GeoPoint point) {
-        System.out.println("Is inside locate.");
+//        System.out.println("Is inside locate.");
         locateStructuresHelper(point, platform_node);
     }
 
@@ -75,7 +75,7 @@ public class Structures {
 
         //System.out.println("Testing " + node.getName());
         if (node.isInsidePolygon(point)) {
-            System.out.println("Found inside " + node.getName());
+//            System.out.println("Found inside " + node.getName());
             if (node != platform_node) {
                 json_list.add(node.toJSON());
             }
@@ -105,8 +105,8 @@ public class Structures {
             etag_string += platform_node.getChildrenNodes().get(i).getId();
         }
         structure_json_data = list.toString();
-        System.out.println("JSON data: " + structure_json_data);
-        System.out.println("Etag_string: " + etag_string);
+//        System.out.println("JSON data: " + structure_json_data);
+//        System.out.println("Etag_string: " + etag_string);
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -124,14 +124,13 @@ public class Structures {
             }
             Etag = hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("MD5 failed me");
+//            System.out.println("MD5 failed me");
         }
 
-        System.out.println("Etag: " + Etag);
+//        System.out.println("Etag: " + Etag);
     }
 
     public HashMap<String, Structure> getIDMap() {
-        System.out.println(IDMap.get("getter: " + platform_node.getChildrenNodes().get(0).getId())); //Interesting debug line
         return IDMap;
     }
 
@@ -139,7 +138,7 @@ public class Structures {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            System.out.println(pair.getKey() + " = " + pair.getValue());
+            System.out.println("Key = " + pair.getKey() + "\nValue = " + ((Structure)(pair.getValue())).getName());
             it.remove(); // avoids a ConcurrentModificationException
         }
     }
