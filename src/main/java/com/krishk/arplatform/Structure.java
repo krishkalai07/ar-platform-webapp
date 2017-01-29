@@ -2,6 +2,7 @@ package com.krishk.arplatform;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Vector;
 import org.json.*;
@@ -58,10 +59,10 @@ class Structure {
     private String id;
     private String name;
     private Type type;
-    private Vector<GeoPoint> polygon;
+    private ArrayList<GeoPoint> polygon;
     private int floor_height;
     private String information;
-    private Vector<Structure> children_nodes;
+    private ArrayList<Structure> children_nodes;
 
     Structure (Type type, String name, String polygon_data, int floor_height, String information) {
         this.type = type;
@@ -70,7 +71,7 @@ class Structure {
         this.floor_height = floor_height;
         this.information = information;
         this.id = generateID();
-        this.children_nodes = new Vector<Structure>();
+        this.children_nodes = new ArrayList<Structure>();
 
     }
 
@@ -89,7 +90,7 @@ class Structure {
         return type;
     }
 
-    public Vector<GeoPoint> getPolygon() {
+    public ArrayList<GeoPoint> getPolygon() {
         return polygon;
     }
 
@@ -101,7 +102,7 @@ class Structure {
         return information;
     }
 
-    public Vector<Structure> getChildrenNodes() {
+    public ArrayList<Structure> getChildrenNodes() {
         return children_nodes;
     }
 
@@ -120,7 +121,7 @@ class Structure {
         this.type = type;
     }
 
-    public void setPolygon(Vector<GeoPoint> polygon) {
+    public void setPolygon(ArrayList<GeoPoint> polygon) {
         this.polygon = polygon;
     }
 
@@ -151,8 +152,8 @@ class Structure {
     // Utility functions
     //
 
-    private Vector<GeoPoint> constructPolygon (String polygon_data) {
-        Vector<GeoPoint> polygon = new Vector<GeoPoint>();
+    private ArrayList<GeoPoint> constructPolygon (String polygon_data) {
+        ArrayList<GeoPoint> polygon = new ArrayList<GeoPoint>();
         String[] tokens;
         String delimiters = "[,]";
 
@@ -172,22 +173,22 @@ class Structure {
         return polygon;
     }
 
-    private Vector<UUID> constructChildrenID (String id_list_string){
-        Vector<UUID> return_vector = new Vector<UUID>();
+    private ArrayList<UUID> constructChildrenID (String id_list_string){
+        ArrayList<UUID> return_list = new ArrayList<UUID>();
         String[] tokens;
         String delimiters = "[,]";
 
         if (id_list_string.length() == 0){
-            return return_vector;
+            return return_list;
         }
 
         tokens = id_list_string.split(delimiters);
 
         for (String token : tokens) {
-            return_vector.add(UUID.fromString(token));
+            return_list.add(UUID.fromString(token));
         }
 
-        return return_vector;
+        return return_list;
     }
 
     public boolean isInsidePolygon(GeoPoint point) {

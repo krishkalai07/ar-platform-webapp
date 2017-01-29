@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 /**
@@ -59,7 +60,10 @@ public class MyResource {
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
+        ArrayList<Structure> list = structures.getPlatform_node().getChildrenNodes();
 
-        return Response.status(200).entity(structures.getPlatform_node().getChildrenNodes()).build();
+        System.out.println("Etag: " + etag);
+        System.out.println("Lsit: " + list);
+        return Response.status(200).entity(list).build();
     }
 }
