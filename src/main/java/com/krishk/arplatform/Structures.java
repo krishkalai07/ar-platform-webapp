@@ -128,6 +128,7 @@ public class Structures {
     }
 
     public HashMap<String, Structure> getIDMap() {
+        System.out.println(IDMap.get("getter: " + platform_node.getChildrenNodes().get(0).getId())); //Interesting debug line
         return IDMap;
     }
 }
