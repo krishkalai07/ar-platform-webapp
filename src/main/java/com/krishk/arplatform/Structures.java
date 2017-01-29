@@ -24,6 +24,8 @@ public class Structures {
         platform_node.addChildNode(los_altos_high_school);
         IDMap.put(los_altos_high_school.getId(), los_altos_high_school);
 
+        System.out.println("Use me: " + los_altos_high_school.getId());
+
         polygon_data = "37.385647, -122.109474, 37.385727, -122.109137, 37.385686, -122.109118, 37.385704, -122.109037, 37.385587, -122.108991, 37.385599, -122.108940, 37.385519, -122.108905, 37.385536, -122.108825, 37.385417, -122.108779, 37.385364, -122.108982, 37.385406, -122.108995, 37.385337, -122.109252, 37.385374, -122.109271, 37.385354, -122.109360, 37.385647, -122.109474";
         Structure eagle_theater = new Structure(Type.BUILDING, "Eagle Theater", polygon_data, 0, "Mah school");
         los_altos_high_school.addChildNode(eagle_theater);
