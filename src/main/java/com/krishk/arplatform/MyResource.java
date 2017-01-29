@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 @SuppressWarnings("all")
 @Path("v1")
-@Singleton
+//@Singleton
 public class MyResource {
     private Structures structures;
 
