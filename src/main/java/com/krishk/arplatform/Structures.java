@@ -126,4 +126,8 @@ public class Structures {
 
         System.out.println("Etag: " + Etag);
     }
+
+    public HashMap<String, Structure> getIDMap() {
+        return IDMap;
+    }
 }

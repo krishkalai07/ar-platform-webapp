@@ -7,18 +7,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 /**
- * Root resource (exposed at "myresource" path)
+ * Root resource (exposed at "vq" path)
  */
+@SuppressWarnings("all")
 @Path("v1")
 @Singleton
 public class MyResource {
     private Structures structures;
 
     /**
-     * This constructor will be called only once, since this is a Singleton class
+     * This constructor will be called only once, since this is a Singleton class.
+     * The constructor will initialize the structures.
      */
     public MyResource() {
         structures = new Structures();
@@ -26,9 +29,9 @@ public class MyResource {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "text/plain" media type.
+     * to the client as "MediaType.Application_Json" media type.
      *
-     * @return String that will be returned as a text/plain response.
+     * @return Response of 200 if there is valid coordinates and ID.
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -38,8 +41,8 @@ public class MyResource {
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String latitude = queryParams.getFirst("lati");
-        String longitiude = queryParams.getFirst("long");
-        GeoPoint current_location = new GeoPoint(latitude, longitiude);
+        String longitude = queryParams.getFirst("long");
+        GeoPoint current_location = new GeoPoint(latitude, longitude);
         structures.locateStructure(current_location);
 
         if (structures.getJsonList().size() == 1) {
@@ -48,5 +51,21 @@ public class MyResource {
 
         String ret_value = structures.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("structures")
+    public Response getStructures(@Context UriInfo uriInfo) {
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        String id = queryParams.getFirst("");
+        HashMap<String, Structure> map = structures.getIDMap();
+
+        if(map.get(id) != null) {
+            return Response.status(200).entity(map.get(id).toString()).build();
+        }
+        else {
+            return Response.status(404).build();
+        }
     }
 }
