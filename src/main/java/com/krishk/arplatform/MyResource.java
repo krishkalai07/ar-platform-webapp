@@ -61,6 +61,10 @@ public class MyResource {
         String id = queryParams.getFirst("id");
         HashMap<String, Structure> map = structures.getIDMap();
 
+        System.out.println("getStructures");
+        System.out.println(id);
+        System.out.println(map.get(id));
+
         if(map.get(id) != null) {
             return Response.status(200).entity(map.get(id).toString()).build();
         }
