@@ -63,7 +63,8 @@ public class MyResource {
 
         System.out.println("getStructures");
         System.out.println(id);
-        System.out.println("Map " + map.size());
+        map.put(id, new Structure(Type.STRUCTURE, "d", "", 3, "dfa");
+        System.out.println("Map " + map.get(id));
 
         if(map.get(id) != null) {
             return Response.status(200).entity(map.get(id).toString()).build();
