@@ -50,6 +50,7 @@ public class Structures {
         constructJSONDataAndEtag();
 
         System.out.println("Constructor:: : " + IDMap.get(los_altos_high_school.getId()));
+        printMap(IDMap);
     }
 
     public ArrayList<String> getJsonList() {
@@ -132,5 +133,14 @@ public class Structures {
     public HashMap<String, Structure> getIDMap() {
         System.out.println(IDMap.get("getter: " + platform_node.getChildrenNodes().get(0).getId())); //Interesting debug line
         return IDMap;
+    }
+
+    public static void printMap(Map mp) {
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
     }
 }
