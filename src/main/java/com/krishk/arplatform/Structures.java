@@ -134,6 +134,10 @@ public class Structures {
         return IDMap;
     }
 
+    public String getStructureJsonData() {
+        return structure_json_data;
+    }
+
     public static void printMap(Map mp) {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
