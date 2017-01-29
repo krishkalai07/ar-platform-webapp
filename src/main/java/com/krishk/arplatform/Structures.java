@@ -134,10 +134,6 @@ public class Structures {
         return IDMap;
     }
 
-    public Structure getPlatform_node() {
-        return platform_node;
-    }
-
     public static void printMap(Map mp) {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {

@@ -60,7 +60,8 @@ public class MyResource {
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
-        ArrayList<Structure> list = structures.getPlatform_node().getChildrenNodes();
+        //ArrayList<Structure> list = structures.getPlatform_node().getChildrenNodes();
+        ArrayList<String> list = structures.getJsonList();
 
         System.out.println("Etag: " + etag);
         System.out.println("Lsit: " + list);
