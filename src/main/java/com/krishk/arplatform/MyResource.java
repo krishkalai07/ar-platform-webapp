@@ -63,7 +63,7 @@ public class MyResource {
 
         System.out.println("getStructures");
         System.out.println(id);
-        map.put(id, new Structure(Type.STRUCTURE, "d", "", 3, "dfa"));
+        //map.put(id, new Structure(Type.STRUCTURE, "d", "", 3, "dfa"));
         System.out.println("Map " + map.get(id));
 
         if(map.get(id) != null) {
