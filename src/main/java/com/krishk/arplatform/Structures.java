@@ -48,6 +48,8 @@ public class Structures {
         //Structure wing700_floor2_room710 = new Structure(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         //wing700_floor1.addChildNode(wing700_floor2_room710);
         constructJSONDataAndEtag();
+
+        System.out.println("Constructor:: : " + IDMap.get(los_altos_high_school.getId()));
     }
 
     public ArrayList<String> getJsonList() {
