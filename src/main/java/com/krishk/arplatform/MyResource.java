@@ -58,7 +58,7 @@ public class MyResource {
     @Path("structures")
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
-        String id = queryParams.getFirst("");
+        String id = queryParams.getFirst("id");
         HashMap<String, Structure> map = structures.getIDMap();
 
         if(map.get(id) != null) {
