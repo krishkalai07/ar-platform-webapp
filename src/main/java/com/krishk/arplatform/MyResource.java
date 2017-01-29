@@ -62,7 +62,7 @@ public class MyResource {
         String etag = queryParams.getFirst("etag");
         //ArrayList<Structure> list = structures.getPlatform_node().getChildrenNodes();
         //ArrayList<String> list = structures.getJsonList();
-        ArrayList<String> list = structures.getStructureJsonData();
+        String list = structures.getStructureJsonData();
 
         System.out.println("Etag: " + etag);
         System.out.println("Lsit: " + list);
