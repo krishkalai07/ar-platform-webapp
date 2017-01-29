@@ -49,7 +49,7 @@ public class Structures {
         //wing700_floor1.addChildNode(wing700_floor2_room710);
         constructJSONDataAndEtag();
 
-        System.out.println("Constructor:: : " + IDMap.get(los_altos_high_school.getId()));
+        System.out.println("Constructor:: : ");
         printMap(IDMap);
     }
 
