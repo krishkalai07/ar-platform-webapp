@@ -63,7 +63,7 @@ public class MyResource {
 
         System.out.println("getStructures");
         System.out.println(id);
-        System.out.println("Map " + map.get(id));
+        System.out.println("Map " + map.size());
 
         if(map.get(id) != null) {
             return Response.status(200).entity(map.get(id).toString()).build();

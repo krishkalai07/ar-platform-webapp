@@ -266,7 +266,6 @@ class Structure {
 
     private String generateID() {
         StringBuilder hexString = new StringBuilder();
-        System.out.println("emply id: " + hexString.toString());
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(getName().getBytes());
