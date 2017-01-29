@@ -47,6 +47,14 @@ public class Structures {
         //polygon_data = ""; //TODO: needs to be created. maps.google.com is not accurate enough
         //Structure wing700_floor2_room710 = new Structure(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         //wing700_floor1.addChildNode(wing700_floor2_room710);
+
+        //House
+        polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
+        Structure house = new Structure(Type.STRUCTURE, "House", polygon_data, 0, "A House");
+        platform_node.addChildNode(house);
+        IDMap.put(house.getId(), house);
+
+
         constructJSONDataAndEtag();
 
         //System.out.println("Constructor:: : ");
