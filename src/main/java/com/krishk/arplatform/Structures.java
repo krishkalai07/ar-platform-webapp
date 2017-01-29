@@ -155,5 +155,7 @@ public class Structures {
         }
     }
 
-
+    public String getEtag() {
+        return Etag;
+    }
 }

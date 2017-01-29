@@ -60,12 +60,21 @@ public class MyResource {
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
-        //ArrayList<Structure> list = structures.getPlatform_node().getChildrenNodes();
-        //ArrayList<String> list = structures.getJsonList();
-        String list = structures.getStructureJsonData();
 
-        System.out.println("Etag: " + etag);
-        System.out.println("Lsit: " + list);
-        return Response.status(200).entity(list).build();
+        // If the etags are equal, then no change is necessary, response = 304
+        // becuase there is no change to the data
+        if (etag.equals(structures.getEtag())) {
+            return Response.status(304).build();
+        }
+        else {
+            String list = structures.getStructureJsonData();
+            return Response.status(200).entity(list).build();
+        }
+
+        //System.out.println("Etag: " + etag);
+        //System.out.println("Lsit: " + list);
     }
 }
+
+//id=md5(node.name)
+//etag = md5(concatenaster(oot.chindrenID))
