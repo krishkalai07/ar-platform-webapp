@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 @SuppressWarnings("all")
 @Path("v1")
-//@Singleton
+@Singleton
 public class MyResource {
     private Structures structures;
 
@@ -77,4 +77,4 @@ public class MyResource {
 }
 
 //id=md5(node.name)
-//etag = md5(concatenaster(oot.chindrenID))
+//etag = md5(concatenate(root.childrenID))
