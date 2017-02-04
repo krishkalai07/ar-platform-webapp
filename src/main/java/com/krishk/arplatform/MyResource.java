@@ -54,6 +54,12 @@ public class MyResource {
         return Response.status(200).entity(ret_value).build();
     }
 
+    /**
+     * Allows the user to make a request to the server.
+     *
+     * @param uriInfo (no idea what you are)
+     * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("structures")

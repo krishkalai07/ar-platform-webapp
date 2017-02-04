@@ -4,12 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.Vector;
 import org.json.*;
 
 import static java.lang.Math.min;
 import static java.lang.Math.max;
 
+@SuppressWarnings("ALL")
 enum Type {
     PLATFORM(0), STRUCTURE(1), BUILDING(2), FLOOR(3), ROOM(4);
 
@@ -23,6 +23,7 @@ enum Type {
     }
 }
 
+@SuppressWarnings("ALL")
 class GeoPoint {
     private double latitude, longitude;
 
@@ -55,23 +56,23 @@ class GeoPoint {
 }
 
 @SuppressWarnings("ALL")
-class Structure {
+class Node {
     private String id;
     private String name;
     private Type type;
     private ArrayList<GeoPoint> polygon;
     private int floor_height;
     private String information;
-    private ArrayList<Structure> children_nodes;
+    private ArrayList<Node> children_nodes;
 
-    Structure (Type type, String name, String polygon_data, int floor_height, String information) {
+    Node (Type type, String name, String polygon_data, int floor_height, String information) {
         this.type = type;
         this.name = name;
         this.polygon = constructPolygon(polygon_data);
         this.floor_height = floor_height;
         this.information = information;
         this.id = generateID();
-        this.children_nodes = new ArrayList<Structure>();
+        this.children_nodes = new ArrayList<Node>();
 
     }
 
@@ -102,7 +103,7 @@ class Structure {
         return information;
     }
 
-    public ArrayList<Structure> getChildrenNodes() {
+    public ArrayList<Node> getChildrenNodes() {
         return children_nodes;
     }
 
@@ -136,13 +137,13 @@ class Structure {
     //
     // Make Relation
     //
-    void addChildNode(Structure node) {
+    void addChildNode(Node node) {
         if (node != null) {
             children_nodes.add(node);
         }
     }
 
-    void removeChildNode(Structure node) {
+    void removeChildNode(Node node) {
         if (node != null) {
             children_nodes.remove(node);
         }
