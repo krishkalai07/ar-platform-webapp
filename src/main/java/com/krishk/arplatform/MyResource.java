@@ -67,6 +67,8 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
 
+        System.out.println(structures.getEtag());
+
         // If the etags are equal, then no change is necessary, response = 304
         // becuase there is no change to the data
         if (etag.equals(structures.getEtag())) {
