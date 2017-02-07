@@ -6,15 +6,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Vector;
-import java.util.logging.Logger;
 
 /**
  * Root resource (exposed at "vq" path)
  */
-@SuppressWarnings("all")
+@SuppressWarnings("ALL")
 @Path("v1")
 @Singleton
 public class MyResource {
@@ -55,7 +51,7 @@ public class MyResource {
     }
 
     /**
-     * Allows the user to make a request to the server.
+     * Method handling HTTP GET request. This function refreshes the user's e-tag per request if a change is needed.
      *
      * @param uriInfo (no idea what you are)
      * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
@@ -82,7 +78,9 @@ public class MyResource {
         //System.out.println("Etag: " + etag);
         // System.out.println("Lsit: " + list);
     }
+
+
 }
 
 //id=md5(node.name)
-//etag = md5(concatenate(root.childrenID))
+//E-tag = md5(concatenate(root.childrenID))

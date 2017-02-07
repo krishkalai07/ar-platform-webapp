@@ -57,14 +57,50 @@ class GeoPoint {
 
 @SuppressWarnings("ALL")
 class Node {
+    /**
+     * An ID created by MD5 on the name of the Node
+     */
     private String id;
+
+    /**
+     * The unique name of the Node.
+     */
     private String name;
+
+    /**
+     * A platform, structure, building, floor, or room.
+     */
     private Type type;
+
+    /**
+     * The coordinates of the polygon.
+     */
     private ArrayList<GeoPoint> polygon;
+
+    /**
+     * The height of the floor.
+     */
     private int floor_height;
+
+    /**
+     * The information of the building
+     */
     private String information;
+
+    /**
+     * The refernece to the nodes of the children. Children are always of a type one more than the current.
+     */
     private ArrayList<Node> children_nodes;
 
+    /**
+     * Contrsucts the node
+     *
+     * @param type A choice of platform, structure, building, floor, or room.
+     * @param name The name of the node as a String
+     * @param polygon_data The data of the polygon. If the type is floor, this field should be an empty string.
+     * @param floor_height The height of the floor. If the type is not a floor, this should be 0.
+     * @param information Information of the building.
+     */
     Node (Type type, String name, String polygon_data, int floor_height, String information) {
         this.type = type;
         this.name = name;
@@ -73,12 +109,9 @@ class Node {
         this.information = information;
         this.id = generateID();
         this.children_nodes = new ArrayList<Node>();
-
     }
 
-    //
-    // Getters
-    //
+
     public String getId() {
         return id;
     }
@@ -107,9 +140,6 @@ class Node {
         return children_nodes;
     }
 
-    //
-    // Setters
-    //
     public void setId() {
         this.id = generateID();
     }
@@ -134,27 +164,36 @@ class Node {
         this.information = information;
     }
 
-    //
-    // Make Relation
-    //
+    /**
+     * Add a child to the list of children node.
+     *
+     * @param node The node to be added
+     */
     void addChildNode(Node node) {
         if (node != null) {
             children_nodes.add(node);
         }
     }
 
+    /**
+     * Removes a child node from the list of children nodes.
+     *
+     * @param node The node to be removed.
+     */
     void removeChildNode(Node node) {
         if (node != null) {
             children_nodes.remove(node);
         }
     }
 
-    //
-    // Utility functions
-    //
-
+    /**
+     * Contructs an ArrayList of polygons from a string of geo-coordiantes
+     *
+     * @param polygon_data The String of coordinates to be converted. The coordinates must be comma seperated.
+     * @return ArrayList of GeoPoints.
+     */
     private ArrayList<GeoPoint> constructPolygon (String polygon_data) {
-        ArrayList<GeoPoint> polygon = new ArrayList<GeoPoint>();
+        ArrayList<GeoPoint> polygon = new ArrayList<>();
         String[] tokens;
         String delimiters = "[,]";
 
@@ -174,24 +213,12 @@ class Node {
         return polygon;
     }
 
-    private ArrayList<UUID> constructChildrenID (String id_list_string){
-        ArrayList<UUID> return_list = new ArrayList<UUID>();
-        String[] tokens;
-        String delimiters = "[,]";
-
-        if (id_list_string.length() == 0){
-            return return_list;
-        }
-
-        tokens = id_list_string.split(delimiters);
-
-        for (String token : tokens) {
-            return_list.add(UUID.fromString(token));
-        }
-
-        return return_list;
-    }
-
+    /**
+     * Returns true if the given point is part (inside of) the polygon.
+     *
+     * @param point The point to be tested
+     * @return true if the point is inside the polygon
+     */
     public boolean isInsidePolygon(GeoPoint point) {
         int counter = 0;
         int i;
@@ -237,6 +264,11 @@ class Node {
         return ret_value;
     }
 
+    /**
+     * Convert the object to a String in JSON format
+     *
+     * @return A String in Json format.
+     */
     String toJSON() {
         JSONObject return_object = new JSONObject();
         return_object.put("Type", type.getValue());
@@ -266,6 +298,11 @@ class Node {
         return return_object.toString();
     }
 
+    /**
+     * 
+     *
+     * @return
+     */
     private String generateID() {
         StringBuilder hexString = new StringBuilder();
         try {
