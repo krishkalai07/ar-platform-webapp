@@ -299,9 +299,9 @@ class Node {
     }
 
     /**
-     * 
+     * Generates an ID from the name.
      *
-     * @return
+     * @return A string ID.
      */
     private String generateID() {
         StringBuilder hexString = new StringBuilder();

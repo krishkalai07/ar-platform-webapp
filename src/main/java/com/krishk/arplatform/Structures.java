@@ -8,13 +8,12 @@ import java.security.MessageDigest;
 public class Structures {
     private HashMap<String, Node> IDMap = new HashMap<>();
     private Node platform_node; //Root node of the tree
-    //private Vector<String> json_list = new Vector<>();
     private ArrayList<String> json_list = new ArrayList<>();
-    private String Etag = "";
+    private String eTag = "";
     private String node_json_data = "";
 
     /**
-     *
+     * Constructs the Structrues with 2 buildings.
      */
     Structures() {
         this.platform_node = new Node(Type.PLATFORM, "Structures", "", 0, "");
@@ -56,24 +55,22 @@ public class Structures {
 
 
         constructJSONDataAndEtag();
-
-        //System.out.println("Constructor:: : ");
-        //printMap(IDMap);
     }
 
-    public ArrayList<String> getJsonList() {
-        return json_list;
-    }
-
-    void locateStructure(GeoPoint point) {
-//        System.out.println("Is inside locate.");
+    /**
+     * Public function to determine if the person is in the polygon
+     *
+     * @param point The user's current location geo-coordinate
+     */
+    public void locateStructure(GeoPoint point) {
         locateStructuresHelper(point, platform_node);
     }
 
     /**
+     * Internal recursive function for locating structures.
      *
-     * @param point
-     * @param node
+     * @param point The current user's geo-coordinate
+     * @param node To node to be tested on
      */
     private void locateStructuresHelper(GeoPoint point, Node node) {
         // Base case
@@ -81,9 +78,7 @@ public class Structures {
             return;
         }
 
-        //System.out.println("Testing " + node.getName());
         if (node.isInsidePolygon(point)) {
-//            System.out.println("Found inside " + node.getName());
             if (node != platform_node) {
                 json_list.add(node.toJSON());
             }
@@ -94,7 +89,7 @@ public class Structures {
     }
 
     /**
-     *
+     * Adds all the structures to the json_list
      */
     public void handleOutsideStructures() {
         for (Node structure : platform_node.getChildrenNodes()) {
@@ -103,7 +98,7 @@ public class Structures {
     }
 
     /**
-     *
+     * Creates the node_json_data and the Etag
      */
     private void constructJSONDataAndEtag() {
         ArrayList list = new ArrayList();
@@ -113,8 +108,6 @@ public class Structures {
             etag_string += platform_node.getChildrenNodes().get(i).getId();
         }
         node_json_data = list.toString();
-//        System.out.println("JSON data: " + structure_json_data);
-//        System.out.println("Etag_string: " + etag_string);
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -130,12 +123,26 @@ public class Structures {
                 }
                 hexString.append(hex);
             }
-            Etag = hexString.toString();
+            eTag = hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-//            System.out.println("MD5 failed me");
+            System.out.println("MD5 failed me");
+            e.printStackTrace(System.out);
         }
 
-//        System.out.println("Etag: " + Etag);
+    }
+
+    /**
+     * Print the entire map.
+     *
+     * @param mp the map to be printed.
+     */
+    public static void printMap(Map mp) {
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            System.out.println("Key = " + pair.getKey() + "\nValue = " + ((Node) (pair.getValue())).getName());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
     }
 
     public HashMap<String, Node> getIDMap() {
@@ -146,16 +153,11 @@ public class Structures {
         return node_json_data;
     }
 
-    public static void printMap(Map mp) {
-        Iterator it = mp.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            System.out.println("Key = " + pair.getKey() + "\nValue = " + ((Node)(pair.getValue())).getName());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
+    public String geteTag() {
+        return eTag;
     }
 
-    public String getEtag() {
-        return Etag;
+    public ArrayList<String> getJsonList() {
+        return json_list;
     }
 }
