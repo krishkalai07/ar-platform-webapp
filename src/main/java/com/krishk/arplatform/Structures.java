@@ -153,7 +153,7 @@ public class Structures {
         return node_json_data;
     }
 
-    public String geteTag() {
+    public String getEtag() {
         return eTag;
     }
 
