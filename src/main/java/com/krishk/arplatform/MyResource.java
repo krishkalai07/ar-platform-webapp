@@ -51,9 +51,9 @@ public class MyResource {
     }
 
     /**
-     * Method handling HTTP GET request. This function refreshes the user's e-tag per request if a change is needed. 
+     * Method handling HTTP GET request. This function refreshes the user's e-tag per request if a change is needed.
      *
-     * @param uriInfo (no idea what you are)
+     * @param uriInfo Allows to get the query parameter from the URL
      * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
      */
     @GET
