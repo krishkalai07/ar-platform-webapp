@@ -57,7 +57,7 @@ public class MyResource {
      * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("structures")
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
@@ -72,7 +72,7 @@ public class MyResource {
         }
         else {
             String list = structures.getStructureJsonData();
-            return Response.status(200).entity(list).build();
+            return Response.status(200).entity(structures.getEtag()).build();
         }
 
         //System.out.println("Etag: " + etag);
