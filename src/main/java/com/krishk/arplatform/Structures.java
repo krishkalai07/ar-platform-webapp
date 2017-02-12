@@ -160,4 +160,8 @@ public class Structures {
     public ArrayList<String> getJsonList() {
         return json_list;
     }
+
+    public String eTagToJson() {
+        return "etag = " + eTag;
+    }
 }
