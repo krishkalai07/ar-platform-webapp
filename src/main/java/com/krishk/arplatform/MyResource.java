@@ -72,7 +72,7 @@ public class MyResource {
         }
         else {
             String list = structures.getStructureJsonData();
-            return Response.status(200).entity(structures.getEtag()).build();
+            return Response.status(200).entity(structures.eTagToJson()).build();
         }
 
         //System.out.println("Etag: " + etag);
