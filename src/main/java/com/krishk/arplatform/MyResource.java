@@ -57,7 +57,7 @@ public class MyResource {
      * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("structures")
     public Response getStructures(@Context UriInfo uriInfo) {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
