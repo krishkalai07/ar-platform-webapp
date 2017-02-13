@@ -31,7 +31,7 @@ public class MyResource {
      * @return Response of 200 if there is valid coordinates and ID.
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("locate/{id}")
     public Response getLocate(@Context UriInfo uriInfo, @PathParam("id") String id) {
         System.out.println("ID: " + id);
