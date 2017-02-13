@@ -76,7 +76,7 @@ public class MyResource {
         }
 
         //System.out.println("Etag: " + etag);
-        // System.out.println("Lsit: " + list);
+        // System.out.println("List: " + list);
     }
 
 

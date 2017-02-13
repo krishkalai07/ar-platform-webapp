@@ -92,8 +92,8 @@ public class Structures {
      * Adds all the structures to the json_list
      */
     public void handleOutsideStructures() {
-        for (Node structure : platform_node.getChildrenNodes()) {
-            json_list.add(structure.toJSON());
+        for (Node node : platform_node.getChildrenNodes()) {
+            json_list.add(node.toJSON());
         }
     }
 
