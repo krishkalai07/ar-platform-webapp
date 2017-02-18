@@ -56,7 +56,7 @@ class GeoPoint {
 }
 
 @SuppressWarnings("ALL")
-class Node {
+class ARNode {
     /**
      * An ID created by MD5 on the name of the Node
      */
@@ -90,7 +90,7 @@ class Node {
     /**
      * The refernece to the nodes of the children. Children are always of a type one more than the current.
      */
-    private ArrayList<Node> children_nodes;
+    private ArrayList<ARNode> children_nodes;
 
     /**
      * Contrsucts the node
@@ -101,14 +101,14 @@ class Node {
      * @param floor_height The height of the floor. If the type is not a floor, this should be 0.
      * @param information Information of the building.
      */
-    Node (Type type, String name, String polygon_data, int floor_height, String information) {
+    ARNode (Type type, String name, String polygon_data, int floor_height, String information) {
         this.type = type;
         this.name = name;
         this.polygon = constructPolygon(polygon_data);
         this.floor_height = floor_height;
         this.information = information;
         this.id = generateID();
-        this.children_nodes = new ArrayList<Node>();
+        this.children_nodes = new ArrayList<ARNode>();
     }
 
 
@@ -136,7 +136,7 @@ class Node {
         return information;
     }
 
-    public ArrayList<Node> getChildrenNodes() {
+    public ArrayList<ARNode> getChildrenNodes() {
         return children_nodes;
     }
 
@@ -169,7 +169,7 @@ class Node {
      *
      * @param node The node to be added
      */
-    void addChildNode(Node node) {
+    void addChildNode(ARNode node) {
         if (node != null) {
             children_nodes.add(node);
         }
@@ -180,7 +180,7 @@ class Node {
      *
      * @param node The node to be removed.
      */
-    void removeChildNode(Node node) {
+    void removeChildNode(ARNode node) {
         if (node != null) {
             children_nodes.remove(node);
         }
