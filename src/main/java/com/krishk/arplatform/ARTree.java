@@ -5,7 +5,7 @@ import java.util.*;
 import java.security.MessageDigest;
 
 @SuppressWarnings("ALL")
-public class Structures {
+public class ARTree {
     private HashMap<String, Node> IDMap = new HashMap<>();
     private Node platform_node; //Root node of the tree
     private ArrayList<String> json_list = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Structures {
     /**
      * Constructs the Structrues with 2 buildings.
      */
-    Structures() {
+    ARTree() {
         this.platform_node = new Node(Type.PLATFORM, "Structures", "", 0, "");
 
         String polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";

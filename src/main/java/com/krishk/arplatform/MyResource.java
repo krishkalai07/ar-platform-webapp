@@ -14,14 +14,14 @@ import javax.ws.rs.core.*;
 @Path("v1")
 @Singleton
 public class MyResource {
-    private Structures structures;
+    private ARTree arTree;
 
     /**
      * This constructor will be called only once, since this is a Singleton class.
      * The constructor will initialize the structures.
      */
     public MyResource() {
-        structures = new Structures();
+        arTree = new ARTree();
     }
 
     /**
@@ -40,13 +40,13 @@ public class MyResource {
         String latitude = queryParams.getFirst("lati");
         String longitude = queryParams.getFirst("long");
         GeoPoint current_location = new GeoPoint(latitude, longitude);
-        structures.locateStructure(current_location);
+        arTree.locateStructure(current_location);
 
-        if (structures.getJsonList().size() == 1) {
-            structures.handleOutsideStructures();
+        if (arTree.getJsonList().size() == 1) {
+            arTree.handleOutsideStructures();
         }
 
-        String ret_value = structures.getJsonList().toString();
+        String ret_value = arTree.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
     }
 
@@ -63,16 +63,16 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
 
-        System.out.println(structures.getEtag());
+        System.out.println(arTree.getEtag());
 
         // If the etags are equal, then no change is necessary, response = 304
         // becuase there is no change to the data
-        if (etag.equals(structures.getEtag())) {
+        if (etag.equals(arTree.getEtag())) {
             return Response.status(304).build();
         }
         else {
-            String list = structures.getStructureJsonData();
-            return Response.status(200).entity(structures.getEtag()).build();
+            String list = arTree.getStructureJsonData();
+            return Response.status(200).entity(arTree.getEtag()).build();
         }
 
         //System.out.println("Etag: " + etag);
