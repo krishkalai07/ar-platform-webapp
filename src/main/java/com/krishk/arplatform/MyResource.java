@@ -44,7 +44,7 @@ public class MyResource {
         System.out.println("getLocate point " + point);
         arTree.locatePoint(id, point);
 
-        return Response.status(200).entity(arTree.getLocateList()).build();
+        return Response.status(200).entity(arTree.getLocateList().toString()).build();
     }
 
     /**
