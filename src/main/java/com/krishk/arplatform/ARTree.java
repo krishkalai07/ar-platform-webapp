@@ -114,7 +114,7 @@ public class ARTree {
     private ARNode getNodeFromID(String id) {
         System.out.println("Entered getNodeFromID " + id);
         for (ARNode node: rootNode.getChildrenNodes()) {
-            System.out.println("getNode " + node.getId());
+            System.out.println("getNode " + node.getName() + " " + node.getId());
             if (node.getId().equals(id)) {
                 return node;
             }
