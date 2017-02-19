@@ -26,6 +26,8 @@ public class ARTree {
      */
     private String structuresChildrenData = "";
 
+    private ArrayList<ARNode> locateList = new ArrayList<>();
+
     /**
      * Constructs the AR Tree. The tree is construted only once since it is Singleton.
      */
@@ -104,7 +106,9 @@ public class ARTree {
 
         if (node != null) {
             System.out.println("locatePoint id: " + node.getId());
+            locateList.clear();
             traverse(node, point);
+            System.out.println("List: " + locateList);
         }
         else {
             System.out.println("Node is null");
@@ -128,7 +132,7 @@ public class ARTree {
         }
 
         if (node.isInsidePolygon(point)) {
-            //add to list
+            locateList.add(node);
             System.out.println("traverse: " + node.getName() + " " + node.getId());
         }
         for (ARNode child : node.getChildrenNodes()) {
