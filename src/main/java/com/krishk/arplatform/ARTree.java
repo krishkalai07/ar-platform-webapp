@@ -97,6 +97,37 @@ public class ARTree {
         }
     }
 
+    public void locatePoint(String id, GeoPoint point) {
+        ARNode node = getNodeFromID(id);
+
+        if (node != null) {
+            traverse(node, point);
+        }
+    }
+
+    private ARNode getNodeFromID(String id) {
+        for (ARNode node: rootNode.getChildrenNodes()) {
+            if (node.getId().equals(id)) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    private void traverse(ARNode node, GeoPoint point) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.isInsidePolygon(point)) {
+            //add to list
+            System.out.println("traverse: " + node.getId());
+        }
+        for (ARNode child : node.getChildrenNodes()) {
+            traverse(child, point);
+        }
+    }
+
     String toJSON() {
         JSONObject return_object = new JSONObject();
         return_object.put("StructruesData", structuresChildrenData);

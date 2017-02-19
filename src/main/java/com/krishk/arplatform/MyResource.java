@@ -30,7 +30,6 @@ public class MyResource {
      *
      * @return Response of 200 if there is valid coordinates and ID.
      */
-    /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("locate/{id}")
@@ -40,17 +39,13 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String latitude = queryParams.getFirst("lati");
         String longitude = queryParams.getFirst("long");
-        GeoPoint current_location = new GeoPoint(latitude, longitude);
-        arTree.locateStructure(current_location);
 
-        if (arTree.getJsonList().size() == 1) {
-            arTree.handleOutsideStructures();
-        }
+        GeoPoint point = new GeoPoint(latitude, longitude);
+        arTree.locatePoint(id, point);
 
-        String ret_value = arTree.getJsonList().toString();
-        return Response.status(200).entity(ret_value).build();
+        return Response.status(200).build();
     }
-*/
+
     /**
      * Method handling HTTP GET request. This function refreshes the user's e-tag per request if a change is needed.
      *
