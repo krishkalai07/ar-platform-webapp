@@ -101,6 +101,7 @@ public class ARTree {
         ARNode node = getNodeFromID(id);
 
         if (node != null) {
+            System.out.println("locatePoint id: " + node.getId());
             traverse(node, point);
         }
     }
