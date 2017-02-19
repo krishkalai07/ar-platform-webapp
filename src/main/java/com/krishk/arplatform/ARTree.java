@@ -98,16 +98,23 @@ public class ARTree {
     }
 
     public void locatePoint(String id, GeoPoint point) {
+        System.out.println("Entered locatePoint");
+
         ARNode node = getNodeFromID(id);
 
         if (node != null) {
             System.out.println("locatePoint id: " + node.getId());
             traverse(node, point);
         }
+        else {
+            System.out.println("Node is null");
+        }
     }
 
     private ARNode getNodeFromID(String id) {
+        System.out.println("Entered getNodeFromID " + id);
         for (ARNode node: rootNode.getChildrenNodes()) {
+            System.out.println("getNode " + node.getId());
             if (node.getId().equals(id)) {
                 return node;
             }

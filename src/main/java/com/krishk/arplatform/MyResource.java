@@ -41,6 +41,7 @@ public class MyResource {
         String longitude = queryParams.getFirst("long");
 
         GeoPoint point = new GeoPoint(latitude, longitude);
+        System.out.println("getLocate point " + point);
         arTree.locatePoint(id, point);
 
         return Response.status(200).build();
