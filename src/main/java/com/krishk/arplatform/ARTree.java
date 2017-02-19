@@ -129,7 +129,7 @@ public class ARTree {
 
         if (node.isInsidePolygon(point)) {
             //add to list
-            System.out.println("traverse: " + node.getId());
+            System.out.println("traverse: " + node.getName() + " " + node.getId());
         }
         for (ARNode child : node.getChildrenNodes()) {
             traverse(child, point);
