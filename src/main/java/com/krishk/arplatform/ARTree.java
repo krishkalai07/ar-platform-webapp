@@ -151,4 +151,8 @@ public class ARTree {
     public String getStructuresETag() {
         return structuresETag;
     }
+
+    public ArrayList<ARNode> getLocateList() {
+        return locateList;
+    }
 }
