@@ -231,7 +231,7 @@ class ARNode {
         p1 = polygon.get(0);
         for (i = 1; i < polygon.size(); i++) {
             p2 = polygon.get(i%(polygon.size()-1));
-            if (point.getLongitude() > min(p1.getLongitude(), p2.getLongitude())) {
+            if (point.getLongitude() => min(p1.getLongitude(), p2.getLongitude())) {
                 if (point.getLongitude() <= max(p1.getLongitude(), p2.getLongitude())) {
                     if (point.getLatitude() <= max(p1.getLatitude(), p2.getLatitude())) {
                         if (p1.getLongitude() != p2.getLongitude()) {
