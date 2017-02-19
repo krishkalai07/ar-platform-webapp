@@ -3,7 +3,6 @@ package com.krishk.arplatform;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.UUID;
 import org.json.*;
 
 import static java.lang.Math.min;
@@ -58,22 +57,22 @@ class GeoPoint {
 @SuppressWarnings("ALL")
 class ARNode {
     /**
-     * An ID created by MD5 on the name of the Node
+     * An ID created using MD5 based on the name.
      */
     private String id;
 
     /**
-     * The unique name of the Node.
+     * An unique name.
      */
     private String name;
 
     /**
-     * A platform, structure, building, floor, or room.
+     * Enum type, represents platform, structure, building, floor, or room.
      */
     private Type type;
 
     /**
-     * The coordinates of the polygon.
+     * A collection of coordinates representing a polygon.
      */
     private ArrayList<GeoPoint> polygon;
 
@@ -83,12 +82,12 @@ class ARNode {
     private int floor_height;
 
     /**
-     * The information of the building
+     * The information about the building.
      */
     private String information;
 
     /**
-     * The refernece to the nodes of the children. Children are always of a type one more than the current.
+     * The refernece to the list of children nodes.
      */
     private ArrayList<ARNode> children_nodes;
 

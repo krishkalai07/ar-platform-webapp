@@ -30,6 +30,7 @@ public class MyResource {
      *
      * @return Response of 200 if there is valid coordinates and ID.
      */
+    /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("locate/{id}")
@@ -49,7 +50,7 @@ public class MyResource {
         String ret_value = arTree.getJsonList().toString();
         return Response.status(200).entity(ret_value).build();
     }
-
+*/
     /**
      * Method handling HTTP GET request. This function refreshes the user's e-tag per request if a change is needed.
      *
@@ -63,23 +64,16 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String etag = queryParams.getFirst("etag");
 
-        System.out.println(arTree.getEtag());
-
         // If the etags are equal, then no change is necessary, response = 304
         // becuase there is no change to the data
-        if (etag.equals(arTree.getEtag())) {
+        if (etag.equals(arTree.getStructuresETag())) {
             return Response.status(304).build();
         }
         else {
-            String list = arTree.getStructureJsonData();
-            return Response.status(200).entity(arTree.getEtag()).build();
+            String list = arTree.toJSON();
+            return Response.status(200).entity(list).build();
         }
-
-        //System.out.println("Etag: " + etag);
-        // System.out.println("List: " + list);
     }
-
-
 }
 
 //id=md5(node.name)

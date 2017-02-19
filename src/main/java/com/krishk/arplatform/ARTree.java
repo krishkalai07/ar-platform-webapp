@@ -1,47 +1,56 @@
 package com.krishk.arplatform;
 
+import org.json.JSONObject;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.security.MessageDigest;
 
 @SuppressWarnings("ALL")
 public class ARTree {
-    private HashMap<String, ARNode> IDMap = new HashMap<>();
-    private ARNode platform_node; //Root node of the tree
-    private ArrayList<String> json_list = new ArrayList<>();
-    private String eTag = "";
-    private String node_json_data = "";
+    /**
+     * Root node of the AR tree.
+     */
+    private ARNode rootNode;
 
     /**
-     * Constructs the Structrues with 2 buildings.
+     * structuresETag = MD5(structure's.eTag)
+     * Cumilative eTag of all structures under the root node.
+     * The purpose is to keep track of any changes to the structures.
+     */
+    private String structuresETag = "";
+
+    /**
+     * JSON formatted structures data. Contains structure's eTag.
+     * The putpose is to optimize interaction between client and server.
+     */
+    private String structuresChildrenData = "";
+
+    /**
+     * Constructs the AR Tree. The tree is construted only once since it is Singleton.
      */
     ARTree() {
-        this.platform_node = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
+        this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
 
         String polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
         ARNode los_altos_high_school = new ARNode(Type.STRUCTURE, "Los Altos high School", polygon_data, 0, "Mah school");
-        platform_node.addChildNode(los_altos_high_school);
-        IDMap.put(los_altos_high_school.getId(), los_altos_high_school);
+        rootNode.addChildNode(los_altos_high_school);
 
         polygon_data = "37.385647, -122.109474, 37.385727, -122.109137, 37.385686, -122.109118, 37.385704, -122.109037, 37.385587, -122.108991, 37.385599, -122.108940, 37.385519, -122.108905, 37.385536, -122.108825, 37.385417, -122.108779, 37.385364, -122.108982, 37.385406, -122.108995, 37.385337, -122.109252, 37.385374, -122.109271, 37.385354, -122.109360, 37.385647, -122.109474";
         ARNode eagle_theater = new ARNode(Type.BUILDING, "Eagle Theater", polygon_data, 0, "Mah school");
         los_altos_high_school.addChildNode(eagle_theater);
-        IDMap.put(eagle_theater.getId(), eagle_theater);
 
         polygon_data = "37.386006, -122.109427, 37.386649, -122.109426, 37.386652, -122.109093, 37.386463, -122.109093, 37.386463, -122.109030, 37.386149, -122.109028, 37.386152, -122.108939, 37.386007, -122.108936, 37.386006, -122.109427";
         ARNode wing700 = new ARNode(Type.BUILDING, "700 Wing", polygon_data, 0, "Science and math buildings");
         los_altos_high_school.addChildNode(wing700);
-        IDMap.put(wing700.getId(), eagle_theater);
 
         polygon_data = "";
         ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 10, "All science buildings are on this floor");
         wing700.addChildNode(wing700_floor1);
-        IDMap.put(wing700_floor1.getId(), wing700_floor1);
 
         polygon_data = "";
         ARNode wing700_floor2 = new ARNode(Type.FLOOR, "Math floor", polygon_data, 11, "All math buildings are on this floor");
         wing700.addChildNode(wing700_floor2);
-        IDMap.put(wing700_floor2.getId(), wing700_floor2);
 
         polygon_data = "37.38642893, -122.10951252, 37.38649573, -122.10958477, 37.38646007,-122.10937816, 37.38648869,-122.10947966, 37.38643915,-122.10937413, 37.38642285,-122.10940775, 37.38640919,-122.10934203, 37.38642432,-122.10935737, 37.38642893,-122.10951252";
         ARNode wing700_floor1_room710 = new ARNode(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
@@ -50,64 +59,22 @@ public class ARTree {
         //House
         polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
         ARNode house = new ARNode(Type.STRUCTURE, "House", polygon_data, 0, "A House");
-        platform_node.addChildNode(house);
-        IDMap.put(house.getId(), house);
+        rootNode.addChildNode(house);
 
-
-        constructJSONDataAndEtag();
+        constructStructuresData();
     }
 
     /**
-     * Public function to determine if the person is in the polygon
-     *
-     * @param point The user's current location geo-coordinate
+     * Construct the structuresChildrenData and the Etag.
      */
-    public void locateStructure(GeoPoint point) {
-        locateStructuresHelper(point, platform_node);
-    }
-
-    /**
-     * Internal recursive function for locating structures.
-     *
-     * @param point The current user's geo-coordinate
-     * @param node To node to be tested on
-     */
-    private void locateStructuresHelper(GeoPoint point, ARNode node) {
-        // Base case
-        if (node == null) {
-            return;
-        }
-
-        if (node.isInsidePolygon(point)) {
-            if (node != platform_node) {
-                json_list.add(node.toJSON());
-            }
-            for (int i = 0; i < node.getChildrenNodes().size(); i++) {
-                locateStructuresHelper(point, node.getChildrenNodes().get(i));
-            }
-        }
-    }
-
-    /**
-     * Adds all the structures to the json_list
-     */
-    public void handleOutsideStructures() {
-        for (ARNode node : platform_node.getChildrenNodes()) {
-            json_list.add(node.toJSON());
-        }
-    }
-
-    /**
-     * Creates the node_json_data and the Etag
-     */
-    private void constructJSONDataAndEtag() {
+    private void constructStructuresData() {
         ArrayList list = new ArrayList();
         String etag_string = "";
-        for (int i = 0 ; i < platform_node.getChildrenNodes().size(); i++) {
-            list.add(platform_node.getChildrenNodes().get(i).toJSON());
-            etag_string += platform_node.getChildrenNodes().get(i).getId();
+        for (int i = 0; i < rootNode.getChildrenNodes().size(); i++) {
+            list.add(rootNode.getChildrenNodes().get(i).toJSON());
+            etag_string += rootNode.getChildrenNodes().get(i).getId();
         }
-        node_json_data = list.toString();
+        structuresChildrenData = list.toString();
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -123,45 +90,22 @@ public class ARTree {
                 }
                 hexString.append(hex);
             }
-            eTag = hexString.toString();
+            structuresETag = hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             System.out.println("MD5 failed me");
             e.printStackTrace(System.out);
         }
-
     }
 
-    /**
-     * Print the entire map.
-     *
-     * @param mp the map to be printed.
-     */
-    public static void printMap(Map mp) {
-        Iterator it = mp.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            System.out.println("Key = " + pair.getKey() + "\nValue = " + ((ARNode) (pair.getValue())).getName());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
+    String toJSON() {
+        JSONObject return_object = new JSONObject();
+        return_object.put("StructruesData", structuresChildrenData);
+        return_object.put("StructuresEtag", structuresETag);
+
+        return return_object.toString();
     }
 
-    public HashMap<String, ARNode> getIDMap() {
-        return IDMap;
-    }
-
-    public String getStructureJsonData() {
-        return node_json_data;
-    }
-
-    public String getEtag() {
-        return eTag;
-    }
-
-    public ArrayList<String> getJsonList() {
-        return json_list;
-    }
-
-    public String eTagToJson() {
-        return "etag = " + eTag;
+    public String getStructuresETag() {
+        return structuresETag;
     }
 }
