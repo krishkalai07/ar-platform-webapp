@@ -276,7 +276,7 @@ class ARNode {
 
         String polygon_string = "";
         for (int i = 0; i < polygon.size(); i++) {
-            polygon_string += polygon.get(i).getLatitude() + ", " + polygon.get(i).getLongitude();
+            polygon_string += polygon.get(i).getLatitude() + "," + polygon.get(i).getLongitude();
             if (i < polygon.size()-1) {
                 polygon_string += ",";
             }
