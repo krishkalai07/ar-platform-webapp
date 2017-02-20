@@ -60,7 +60,7 @@ public class ARTree {
         wing700_floor1.addChildNode(wing700_floor1_room710);
 
         //House
-        polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
+        polygon_data = "37.404176,-122.078845,37.404179,-122.078965,37.404125,-122.078970,37.404118,-122.078849,37.404176,-122.078845";
         ARNode house = new ARNode(Type.STRUCTURE, "House", polygon_data, 0, "A House");
         rootNode.addChildNode(house);
 
