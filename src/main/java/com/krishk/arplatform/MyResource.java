@@ -68,7 +68,7 @@ public class MyResource {
         }
         else {
             String list = arTree.toJSON();
-            return Response.status(200).entity(list).build();
+            return Response.status(200).entity(arTree.getLocateList().toString()).build();
         }
     }
 }
