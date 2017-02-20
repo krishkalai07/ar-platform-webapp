@@ -67,7 +67,8 @@ public class MyResource {
             return Response.status(304).entity(str).build();
         }
         else {
-            return Response.status(200).entity(arTree.getStructuresList().toString()).build();
+
+            return Response.status(200).header("ETag", arTree.getStructuresETag()).entity(arTree.getStructuresList().toString()).build();
         }
     }
 }
