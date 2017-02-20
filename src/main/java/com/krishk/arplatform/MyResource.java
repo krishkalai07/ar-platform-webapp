@@ -64,7 +64,7 @@ public class MyResource {
         // becuase there is no change to the data
         if (etag.equals(arTree.getStructuresETag())) {
             String str = "Not modified";
-            return Response.status(200).entity(str).build();
+            return Response.status(304).entity(str).build();
         }
         else {
             String list = arTree.toJSON();

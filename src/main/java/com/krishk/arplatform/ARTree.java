@@ -143,7 +143,7 @@ public class ARTree {
     String toJSON() {
         JSONObject return_object = new JSONObject();
         return_object.put("StructruesData", structuresChildrenData);
-        return_object.put("StructuresEtag", structuresETag);
+        //return_object.put("StructuresEtag", structuresETag);
 
         return return_object.toString();
     }
