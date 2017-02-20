@@ -24,7 +24,8 @@ public class ARTree {
      * JSON formatted structures data. Contains structure's eTag.
      * The putpose is to optimize interaction between client and server.
      */
-    private String structuresChildrenData = "";
+
+    private ArrayList<String> structuresList = new ArrayList<>();
 
     private ArrayList<String> locateList = new ArrayList<>();
 
@@ -70,13 +71,11 @@ public class ARTree {
      * Construct the structuresChildrenData and the Etag.
      */
     private void constructStructuresData() {
-        ArrayList list = new ArrayList();
         String etag_string = "";
         for (int i = 0; i < rootNode.getChildrenNodes().size(); i++) {
-            list.add(rootNode.getChildrenNodes().get(i).toJSON());
+            structuresList.add(rootNode.getChildrenNodes().get(i).toJSON());
             etag_string += rootNode.getChildrenNodes().get(i).getId();
         }
-        structuresChildrenData = list.toString();
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -140,13 +139,6 @@ public class ARTree {
         }
     }
 
-    String toJSON() {
-        JSONObject return_object = new JSONObject();
-        return_object.put("StructruesData", structuresChildrenData);
-        //return_object.put("StructuresEtag", structuresETag);
-
-        return return_object.toString();
-    }
 
     public String getStructuresETag() {
         return structuresETag;
@@ -154,5 +146,9 @@ public class ARTree {
 
     public ArrayList<String> getLocateList() {
         return locateList;
+    }
+
+    public ArrayList<String> getStructuresList() {
+        return structuresList;
     }
 }
