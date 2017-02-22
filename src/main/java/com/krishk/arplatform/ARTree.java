@@ -141,6 +141,7 @@ public class ARTree {
         if (node == null) {
             return;
         }
+        System.out.println(node.getName());
         System.out.println(node.getChildrenNodes());
         if (node.isInsidePolygon(point)) {
             locateList.add(node.toJSON());
