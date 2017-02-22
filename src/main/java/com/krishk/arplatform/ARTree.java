@@ -74,7 +74,7 @@ public class ARTree {
                        "37.404178, -122.078923, " +
                        "37.404122, -122.078969, " +
                        "37.404179, -122.078965, " +
-                       "37.404114, -122.078842";
+                       "37.404238, -122.078921";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
         house.addChildNode(house);
 
