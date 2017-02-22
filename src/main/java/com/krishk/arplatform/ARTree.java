@@ -164,4 +164,9 @@ public class ARTree {
     public ArrayList<String> getStructuresList() {
         return structuresList;
     }
+
+    @Override
+    public String toString() {
+        return rootNode.toString();
+    }
 }

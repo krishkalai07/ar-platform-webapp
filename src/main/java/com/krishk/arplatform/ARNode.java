@@ -319,7 +319,7 @@ class ARNode {
         } catch (NoSuchAlgorithmException e) {
             System.out.println("MD5 failed me");
         }
-        System.out.println("id: " + hexString.toString());
+        //System.out.println("id: " + hexString.toString());
         return hexString.toString();
     }
 }
