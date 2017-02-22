@@ -58,16 +58,22 @@ public class ARTree {
         ARNode wing700_floor1_room710 = new ARNode(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         wing700_floor1.addChildNode(wing700_floor1_room710);
         */
-        //House
-        polygon_data = "37.404176,-122.078845,37.404179,-122.078965,37.404125,-122.078970,37.404118,-122.078849,37.404176,-122.078845";
-        ARNode house = new ARNode(Type.STRUCTURE, "House", polygon_data, 0, "A House");
-        rootNode.addChildNode(house);
 
-        polygon_data = "37.404177, -122.078906, 37.404176, -122.078841, 37.404114, -122.078842, 37.404119, -122.078908, 37.404177, -122.078906";
+        //House
+
+        polygon_data = "37.404406, -122.079025, 37.403889, -122.079055, 37.403893, -122.078698, 37.404378, -122.078683, 37.404406, -122.079025";
+        ARNode townhouse = new ARNode(Type.STRUCTURE, "Townhouse", polygon_data, 0, "Townhouse");
+        rootNode.addChildNode(townhouse);
+
+        polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078966";
+        ARNode house = new ARNode(Type.BUILDING, "House", polygon_data, 0, "A House");
+        townhouse.addChildNode(house);
+
+        polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
         ARNode kitchen = new ARNode(Type.ROOM, "Kitchen", polygon_data, 0, "Kitchen of the house");
         house.addChildNode(kitchen);
 
-        polygon_data = "37.404238, -122.078921, 37.404178, -122.078923, 37.404122, -122.078969, 37.404179, -122.078965, 37.404238, -122.078921";
+        polygon_data = "37.404178, -122.078966, 37.404123, -122.078969 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
         house.addChildNode(living_room);
 
