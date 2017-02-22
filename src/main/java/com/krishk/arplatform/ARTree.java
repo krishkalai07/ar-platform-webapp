@@ -172,6 +172,3 @@ public class ARTree {
         return structuresList;
     }
 }
-//School: b3b7bffa77ad51fee6d3d3ed62c648f2
-//House:  aebfe46795575772b7cf413e25caeab9
-//
