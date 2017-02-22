@@ -142,8 +142,8 @@ public class ARTree {
         if (node == null) {
             return;
         }
-        System.out.println(node.getName());
-        System.out.println(node.getChildrenNodes());
+        System.out.println("Traverse name: " + node.getName());
+        System.out.println("Traverse children: " + node.getChildrenNodes());
         if (node.isInsidePolygon(point)) {
             locateList.add(node.toJSON());
             System.out.println("traverse: " + node.getName() + " " + node.getId());
