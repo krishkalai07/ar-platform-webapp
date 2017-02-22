@@ -62,19 +62,11 @@ public class ARTree {
         ARNode house = new ARNode(Type.STRUCTURE, "House", polygon_data, 0, "A House");
         rootNode.addChildNode(house);
 
-        polygon_data = "37.404177, -122.078906, " +
-                       "37.404176, -122.078841, " +
-                       "37.404114, -122.078842, " +
-                       "37.404119, -122.078908, " +
-                       "37.404177, -122.078906";
+        polygon_data = "37.404177, -122.078906, 37.404176, -122.078841, 37.404114, -122.078842, 37.404119, -122.078908, 37.404177, -122.078906";
         ARNode kitchen = new ARNode(Type.ROOM, "Kitchen", polygon_data, 0, "Kitchen of the house");
         house.addChildNode(kitchen);
 
-        polygon_data = "37.404238, -122.078921, " +
-                       "37.404178, -122.078923, " +
-                       "37.404122, -122.078969, " +
-                       "37.404179, -122.078965, " +
-                       "37.404238, -122.078921";
+        polygon_data = "37.404238, -122.078921, 37.404178, -122.078923, 37.404122, -122.078969, 37.404179, -122.078965, 37.404238, -122.078921";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
         house.addChildNode(house);
 
