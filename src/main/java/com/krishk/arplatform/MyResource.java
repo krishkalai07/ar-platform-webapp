@@ -35,7 +35,7 @@ public class MyResource {
     @Path("locate/{id}")
     public Response getLocate(@Context UriInfo uriInfo, @PathParam("id") String id) {
         //System.out.println("ID: " + id);
-        System.out.println(arTree);
+        //System.out.println(arTree);
         System.out.println("ID: " + id);
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
