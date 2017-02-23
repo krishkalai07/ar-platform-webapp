@@ -69,13 +69,27 @@ public class ARTree {
         ARNode house = new ARNode(Type.BUILDING, "House", polygon_data, 0, "A House");
         townhouse.addChildNode(house);
 
+        ARNode house_floor1 = new ARNode(Type.FLOOR, "Floor 1", "", 10, "First floor of a house.");
+        townhouse.addChildNode(house);
+
         polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
         ARNode kitchen = new ARNode(Type.ROOM, "Kitchen", polygon_data, 0, "Kitchen of the house");
-        house.addChildNode(kitchen);
+        house_floor1.addChildNode(kitchen);
 
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
-        house.addChildNode(living_room);
+        house_floor1.addChildNode(living_room);
+
+        ARNode house_floor2 = new ARNode(Type.FLOOR, "Floor 2", "", 12, "Second floor of a house.");
+        house.addChildNode(house_floor2);
+
+        polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
+        ARNode master_bedroom = new ARNode(Type.ROOM, "Master Bedroom", polygon_data, 0, "Master Bedroom");
+        house_floor2.addChildNode(master_bedroom);
+
+        polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
+        ARNode small_bedrooms = new ARNode(Type.ROOM, "Small Bedroom", polygon_data, 0, "Small bedroom");
+        house_floor2.addChildNode(small_bedrooms);
 
         constructStructuresData();
     }
