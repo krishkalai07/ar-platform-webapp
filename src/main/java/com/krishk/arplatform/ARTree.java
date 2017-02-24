@@ -33,7 +33,7 @@ public class ARTree {
     ARTree() {
         this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
         String polygon_data = "";
-/*
+
         polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
         ARNode los_altos_high_school = new ARNode(Type.STRUCTURE, "Los Altos high School", polygon_data, 0, "Mah school");
         rootNode.addChildNode(los_altos_high_school);
@@ -57,10 +57,8 @@ public class ARTree {
         polygon_data = "37.38642893, -122.10951252, 37.38649573, -122.10958477, 37.38646007,-122.10937816, 37.38648869,-122.10947966, 37.38643915,-122.10937413, 37.38642285,-122.10940775, 37.38640919,-122.10934203, 37.38642432,-122.10935737, 37.38642893,-122.10951252";
         ARNode wing700_floor1_room710 = new ARNode(Type.ROOM, "Room 710", polygon_data, 11, "Mr.Dressen's Room");
         wing700_floor1.addChildNode(wing700_floor1_room710);
-        */
 
         //House
-
         polygon_data = "37.404406, -122.079025, 37.403889, -122.079055, 37.403893, -122.078698, 37.404378, -122.078683, 37.404406, -122.079025";
         ARNode townhouse = new ARNode(Type.STRUCTURE, "Townhouse", polygon_data, 0, "Townhouse");
         rootNode.addChildNode(townhouse);
