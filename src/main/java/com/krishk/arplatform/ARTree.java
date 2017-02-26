@@ -48,7 +48,7 @@ public class ARTree {
         los_altos_high_school.addChildNode(wing700);
 
         polygon_data = "";
-        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 10, "All science buildings are on this floor");
+        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 0, "All science buildings are on this floor");
         wing700.addChildNode(wing700_floor1);
 
         //polygon_data = "";
@@ -61,34 +61,34 @@ public class ARTree {
 
         //House
         polygon_data = "37.404406, -122.079025, 37.403889, -122.079055, 37.403893, -122.078698, 37.404378, -122.078683, 37.404406, -122.079025";
-        ARNode townhouse = new ARNode(Type.STRUCTURE, "Townhouse", polygon_data, 0, "Townhouse");
-        rootNode.addChildNode(townhouse);
+        ARNode the_house = new ARNode(Type.STRUCTURE, "TheHouse", polygon_data, 0, "The house");
+        rootNode.addChildNode(the_house);
 
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078966";
-        ARNode house = new ARNode(Type.BUILDING, "House", polygon_data, 0, "A House");
-        townhouse.addChildNode(house);
+        ARNode living_area = new ARNode(Type.BUILDING, "LivingArea", polygon_data, 0, "Living area");
+        the_house.addChildNode(living_area);
 
-        ARNode house_floor1 = new ARNode(Type.FLOOR, "Floor 1", "", 10, "First floor of a house.");
-        house.addChildNode(house_floor1);
+        ARNode floor1 = new ARNode(Type.FLOOR, "Floor 1", "", 13.0, "First floor");
+        living_area.addChildNode(floor1);
 
         polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
-        ARNode kitchen = new ARNode(Type.ROOM, "Kitchen", polygon_data, 0, "Kitchen of the house");
-        house_floor1.addChildNode(kitchen);
+        ARNode kitchen = new ARNode(Type.ROOM, "Kitchen", polygon_data, 0, "Kitchen");
+        floor1.addChildNode(kitchen);
 
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
-        house_floor1.addChildNode(living_room);
+        floor1.addChildNode(living_room);
 
-        ARNode house_floor2 = new ARNode(Type.FLOOR, "Floor 2", "", 12, "Second floor of a house.");
-        house.addChildNode(house_floor2);
+        ARNode floor2 = new ARNode(Type.FLOOR, "Floor 2", "", 16.5, "Second floor");
+        living_area.addChildNode(floor2);
 
         polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
-        ARNode master_bedroom = new ARNode(Type.ROOM, "Master Bedroom", polygon_data, 0, "Master Bedroom");
-        house_floor2.addChildNode(master_bedroom);
+        ARNode master_bedroom = new ARNode(Type.ROOM, "MasterBedroom", polygon_data, 0, "Master Bedroom");
+        floor2.addChildNode(master_bedroom);
 
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
-        ARNode small_bedrooms = new ARNode(Type.ROOM, "Small Bedroom", polygon_data, 0, "Small bedroom");
-        house_floor2.addChildNode(small_bedrooms);
+        ARNode other_bedrooms = new ARNode(Type.ROOM, "OtherBedrooms", polygon_data, 0, "Other bedrooms");
+        floor2.addChildNode(other_bedrooms);
 
         //South Hall (Fair location)
         polygon_data = "37.327869, -121.888824, 37.329413, -121.886721, 37.328937, -121.886134, 37.327229, -121.888344, 37.327869, -121.888824";
@@ -178,8 +178,18 @@ public class ARTree {
         }
         System.out.println("Traverse name: " + node.getName());
         System.out.println("Traverse children: " + node.getChildrenNodes());
-        if (node.isInsidePolygon(point) && node.isInFoor(elevation)) {
-            locateList.add(node.toJSON());
+        if (node.isInsidePolygon(point)) {
+            if (node.getType() == Type.FLOOR) {
+                if (node.isInFoor(elevation)) {
+                    locateList.add(node.toJSON());
+                }
+                else {
+                    return;
+                }
+            }
+            else {
+                locateList.add(node.toJSON());
+            }
             System.out.println("traverse: " + node.getName() + " " + node.getId());
         }
         for (ARNode child : node.getChildrenNodes()) {

@@ -155,8 +155,8 @@ class ARNode {
         this.polygon = polygon;
     }
 
-    public void setFloorHeight(int floor_height) {
-        this.elevation = floor_height;
+    public void setElevation(double elevation) {
+        this.elevation = elevation;
     }
 
     public void setInformation(String information) {
@@ -248,8 +248,8 @@ class ARNode {
         return counter % 2 != 0;
     }
 
-    boolean isInFoor(double height) {
-        return Math.abs(height - elevation) < 2.5;
+    boolean isInFoor(double elevation) {
+        return Math.abs(elevation - this.elevation) < 2;
     }
 
     @Override
