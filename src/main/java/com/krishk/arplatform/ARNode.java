@@ -249,7 +249,7 @@ class ARNode {
     }
 
     boolean isInFoor(double elevation) {
-        return Math.abs(elevation - this.elevation) < 2;
+        return Math.abs(elevation - this.elevation) < 1;
     }
 
     @Override
