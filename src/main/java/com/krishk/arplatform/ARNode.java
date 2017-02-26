@@ -77,9 +77,9 @@ class ARNode {
     private ArrayList<GeoPoint> polygon;
 
     /**
-     * The height of the floor.
+     * The elevation of the floor at standing height.
      */
-    private int floor_height;
+    private double elevation;
 
     /**
      * The information about the building.
@@ -100,11 +100,11 @@ class ARNode {
      * @param floor_height The height of the floor. If the type is not a floor, this should be 0.
      * @param information Information of the building.
      */
-    ARNode (Type type, String name, String polygon_data, int floor_height, String information) {
+    ARNode (Type type, String name, String polygon_data, double elevation, String information) {
         this.type = type;
         this.name = name;
         this.polygon = constructPolygon(polygon_data);
-        this.floor_height = floor_height;
+        this.elevation = elevation;
         this.information = information;
         this.id = generateID();
         this.children_nodes = new ArrayList<ARNode>();
@@ -127,8 +127,8 @@ class ARNode {
         return polygon;
     }
 
-    public int getFloorHeight() {
-        return floor_height;
+    public double getElevation() {
+        return elevation;
     }
 
     public String getInformation() {
@@ -156,7 +156,7 @@ class ARNode {
     }
 
     public void setFloorHeight(int floor_height) {
-        this.floor_height = floor_height;
+        this.elevation = floor_height;
     }
 
     public void setInformation(String information) {
@@ -248,6 +248,10 @@ class ARNode {
         return counter % 2 != 0;
     }
 
+    boolean isInFoor(double height) {
+        return Math.abs(height - elevation) < 2.5;
+    }
+
     @Override
     public String toString() {
         String ret_value = "";
@@ -256,7 +260,7 @@ class ARNode {
         ret_value += "Name = " + name + "\n";
         ret_value += "Type = " + type + "\n";
         ret_value += "Polygon = " + polygon.toString() + "\n";
-        ret_value += "Floor_height = " + floor_height + "\n";
+        ret_value += "Floor_height = " + elevation + "\n";
         ret_value += "information = " + information + "\n";
         ret_value += "Children nodes = " + children_nodes + "\n";
 
@@ -282,7 +286,7 @@ class ARNode {
             }
         }
         return_object.put("Polygon", polygon_string);
-        return_object.put("FloorHeight", floor_height);
+        return_object.put("Elevation", elevation);
         return_object.put("Information", information);
 
         String id_string = "";

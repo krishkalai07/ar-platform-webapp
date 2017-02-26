@@ -34,6 +34,7 @@ public class ARTree {
         this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
         String polygon_data = "";
 
+        //School
         polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
         ARNode los_altos_high_school = new ARNode(Type.STRUCTURE, "Los Altos high School", polygon_data, 0, "Mah school");
         rootNode.addChildNode(los_altos_high_school);
@@ -89,6 +90,15 @@ public class ARTree {
         ARNode small_bedrooms = new ARNode(Type.ROOM, "Small Bedroom", polygon_data, 0, "Small bedroom");
         house_floor2.addChildNode(small_bedrooms);
 
+        //South Hall (Fair location)
+        polygon_data = "37.327869, -121.888824, 37.329413, -121.886721, 37.328937, -121.886134, 37.327229, -121.888344, 37.327869, -121.888824";
+        ARNode full_building = new ARNode(Type.STRUCTURE, "San Jose Convention Center", polygon_data, 0, "San Jose Convention Center");
+        rootNode.addChildNode(full_building);
+
+        polygon_data = "37.329197, -121.886725, 37.328073, -121.888139, 37.327918, -121.888110, 37.327849, -121.887987, 37.327859, -121.887852, 37.328952, -121.886417, 37.329197, -121.886725";
+        ARNode south_hall = new ARNode(Type.BUILDING, "South Hall", polygon_data, 0, "San Jose Convention Center");
+        full_building.addChildNode(south_hall);
+
         constructStructuresData();
     }
 
@@ -123,7 +133,13 @@ public class ARTree {
         }
     }
 
-    public void locatePoint(String id, GeoPoint point) {
+    /**
+     *
+     * @param id
+     * @param point
+     * @param elevation
+     */
+    public void locatePoint(String id, GeoPoint point, double elevation) {
         System.out.println("Entered locatePoint");
 
         ARNode node = getNodeFromID(id);
@@ -131,7 +147,7 @@ public class ARTree {
         if (node != null) {
             System.out.println("locatePoint id: " + node.getId());
             locateList.clear();
-            traverse(node, point);
+            traverse(node, point, elevation);
             System.out.println("List: " + locateList);
         }
         else {
@@ -156,18 +172,18 @@ public class ARTree {
         return null;
     }
 
-    private void traverse(ARNode node, GeoPoint point) {
+    private void traverse(ARNode node, GeoPoint point, double elevation) {
         if (node == null) {
             return;
         }
         System.out.println("Traverse name: " + node.getName());
         System.out.println("Traverse children: " + node.getChildrenNodes());
-        if (node.isInsidePolygon(point)) {
+        if (node.isInsidePolygon(point) && node.isInFoor(elevation)) {
             locateList.add(node.toJSON());
             System.out.println("traverse: " + node.getName() + " " + node.getId());
         }
         for (ARNode child : node.getChildrenNodes()) {
-            traverse(child, point);
+            traverse(child, point, elevation);
         }
     }
 

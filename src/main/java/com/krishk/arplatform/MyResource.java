@@ -41,10 +41,11 @@ public class MyResource {
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String latitude = queryParams.getFirst("lati");
         String longitude = queryParams.getFirst("long");
+        String elevation = queryParams.getFirst("elev");
 
         GeoPoint point = new GeoPoint(latitude, longitude);
         System.out.println("getLocate point " + point);
-        arTree.locatePoint(id, point);
+        arTree.locatePoint(id, point, Double.parseDouble(elevation));
         return Response.status(200).entity(arTree.getLocateList().toString()).build();
     }
 
@@ -67,7 +68,6 @@ public class MyResource {
             return Response.status(200).entity("Not Modified").build();
         }
         else {
-
             return Response.status(200).header("ETag", arTree.getStructuresETag()).entity(arTree.getStructuresList().toString()).build();
         }
     }
