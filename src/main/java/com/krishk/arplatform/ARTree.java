@@ -64,6 +64,15 @@ public class ARTree {
         ARNode the_house = new ARNode(Type.STRUCTURE, "TheHouse", polygon_data, 0, "The house");
         rootNode.addChildNode(the_house);
 
+        polygon_data = "37.404178, -122.078966, 37.404183, -122.079059, 37.404183, -122.079059, 37.404124, -122.078976";
+        ARNode front_yard = new ARNode(Type.BUILDING, "FrontYard", polygon_data, 0, "Front yard");
+
+        polygon_data = "37.404115, -122.078849, 37.404116, -122.078803, 37.404177, -122.078794, 37.404176, -122.078853, 37.404115, -122.078849,";
+        ARNode back_yard = new ARNode(Type.BUILDING, "BackYard", polygon_data, 0, "Back yard");
+
+        polygon_data = "37.404110, -122.078707, 37.404115, -122.078798, 37.404178, -122.078794, 37.404169, -122.078712, 37.404110, -122.078707";
+        ARNode carport = new ARNode(Type.BUILDING, "Carport", polygon_data, 0, "Carport");
+
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078966";
         ARNode living_area = new ARNode(Type.BUILDING, "LivingArea", polygon_data, 0, "Living area");
         the_house.addChildNode(living_area);
