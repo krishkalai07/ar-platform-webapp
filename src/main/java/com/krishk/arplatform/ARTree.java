@@ -22,15 +22,17 @@ public class ARTree {
      * JSON formatted structures data. Contains structure's eTag.
      * The putpose is to optimize interaction between client and server.
      */
-
     private ArrayList<String> structuresList = new ArrayList<>();
 
+    /**
+     * JSON formatted data repersenting the nodes that the user is in.
+     */
     private ArrayList<String> locateList = new ArrayList<>();
 
     /**
      * Constructs the AR Tree. The tree is construted only once since it is Singleton.
      */
-    ARTree() {
+    public ARTree() {
         this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
         String polygon_data = "";
 
@@ -112,7 +114,7 @@ public class ARTree {
     }
 
     /**
-     * Construct the structuresChildrenData and the Etag.
+     * Construct the <pre>structuresChildrenData</pre> and the <pre>Etag</pre>.
      */
     private void constructStructuresData() {
         String etag_string = "";
@@ -143,10 +145,11 @@ public class ARTree {
     }
 
     /**
+     * Public function to fill <pre>locateList</pre>.
      *
-     * @param id
-     * @param point
-     * @param elevation
+     * @param id ID of the structure
+     * @param point User's current geocoordinate
+     * @param elevation User's current elevation
      */
     public void locatePoint(String id, GeoPoint point, double elevation) {
         System.out.println("Entered locatePoint");
@@ -165,10 +168,10 @@ public class ARTree {
     }
 
     /**
-     * Method to determine if the ID matches
+     * Method to determine if the ID matches any of the structures' ID
      *
-     * @param id
-     * @return
+     * @param id ID of the structure
+     * @return The structure node with the corresponding ID as <pre>id</pre>, or <pre>null</pre> if no node exists
      */
     private ARNode getNodeFromID(String id) {
         System.out.println("Entered getNodeFromID " + id);
@@ -181,6 +184,12 @@ public class ARTree {
         return null;
     }
 
+    /**
+     * Traverse the tree, and append to <pre>locateList</pre> is the user is inside the node
+     * @param node The node to be tested and added.
+     * @param point The user's current location.
+     * @param elevation The user's current elevation.
+     */
     private void traverse(ARNode node, GeoPoint point, double elevation) {
         if (node == null) {
             return;

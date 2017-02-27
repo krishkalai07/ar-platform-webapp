@@ -53,7 +53,7 @@ public class MyResource {
      * Method handling HTTP GET request. This function refreshes the user's e-tag and structres list per request if a change is needed.
      *
      * @param uriInfo Allows to get the query parameter from the URL.
-     * @return Response of 304 if no change is needed. Response of 200 if a change is needed.
+     * @return If a change is needed, then a response of 200 with the new etag and structuresData. If not, then 200 with "Not Modified.
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)

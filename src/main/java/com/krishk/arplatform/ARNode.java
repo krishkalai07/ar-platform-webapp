@@ -248,6 +248,12 @@ class ARNode {
         return counter % 2 != 0;
     }
 
+    /**
+     * Checks if the user's elevation is within 1 meter of the node's elevation. This function will be called only when testing floors.
+     *
+     * @param elevation The user's current elevation.
+     * @return True if the user's elevation is within 1 meter of the floor's elevation.
+     */
     boolean isInFoor(double elevation) {
         return Math.abs(elevation - this.elevation) < 1;
     }
