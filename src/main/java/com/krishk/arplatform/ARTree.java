@@ -38,11 +38,11 @@ public class ARTree {
 
         //School
         polygon_data = "37.388616, -122.110888, 37.388610, -122.107366, 37.385015, -122.107379, 37.385034, -122.110901, 37.388616, -122.110888";
-        ARNode los_altos_high_school = new ARNode(Type.STRUCTURE, "Los Altos high School", polygon_data, 0, "Mah school");
+        ARNode los_altos_high_school = new ARNode(Type.STRUCTURE, "Los Altos high School", polygon_data, 0, "Los Altos High School");
         rootNode.addChildNode(los_altos_high_school);
 
         polygon_data = "37.385647, -122.109474, 37.385727, -122.109137, 37.385686, -122.109118, 37.385704, -122.109037, 37.385587, -122.108991, 37.385599, -122.108940, 37.385519, -122.108905, 37.385536, -122.108825, 37.385417, -122.108779, 37.385364, -122.108982, 37.385406, -122.108995, 37.385337, -122.109252, 37.385374, -122.109271, 37.385354, -122.109360, 37.385647, -122.109474";
-        ARNode eagle_theater = new ARNode(Type.BUILDING, "Eagle Theater", polygon_data, 0, "Mah school");
+        ARNode eagle_theater = new ARNode(Type.BUILDING, "Eagle Theater", polygon_data, 0, "Eagle Theater");
         los_altos_high_school.addChildNode(eagle_theater);
 
         polygon_data = "37.386006, -122.109427, 37.386649, -122.109426, 37.386652, -122.109093, 37.386463, -122.109093, 37.386463, -122.109030, 37.386149, -122.109028, 37.386152, -122.108939, 37.386007, -122.108936, 37.386006, -122.109427";
