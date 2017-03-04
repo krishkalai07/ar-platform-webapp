@@ -43,6 +43,8 @@ public class MyResource {
         String longitude = queryParams.getFirst("long");
         String elevation = queryParams.getFirst("elev");
 
+        System.out.println("lat: " + latitude + " lon: " + longitude + " elev: " + elevation);
+
         GeoPoint point = new GeoPoint(latitude, longitude);
         System.out.println("getLocate point " + point);
         arTree.locatePoint(id, point, Double.parseDouble(elevation));
