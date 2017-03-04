@@ -50,7 +50,8 @@ public class ARTree {
         los_altos_high_school.addChildNode(wing700);
 
         polygon_data = "";
-        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 47.7, "All science buildings are on this floor. ");
+        //ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 47.7, "All science buildings are on this floor. ");
+        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 0, "All science buildings are on this floor. ");
         wing700.addChildNode(wing700_floor1);
 
         //polygon_data = "";

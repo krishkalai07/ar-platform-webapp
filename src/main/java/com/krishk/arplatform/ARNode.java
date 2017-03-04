@@ -255,6 +255,9 @@ class ARNode {
      * @return True if the user's elevation is within 1 meter of the floor's elevation.
      */
     boolean isInFoor(double elevation) {
+        if (elevation == 0) {
+            return true;
+        }
         return Math.abs(elevation - this.elevation) < 1;
     }
 
