@@ -46,11 +46,11 @@ public class ARTree {
         los_altos_high_school.addChildNode(eagle_theater);
 
         polygon_data = "37.386006, -122.109427, 37.386649, -122.109426, 37.386652, -122.109093, 37.386463, -122.109093, 37.386463, -122.109030, 37.386149, -122.109028, 37.386152, -122.108939, 37.386007, -122.108936, 37.386006, -122.109427";
-        ARNode wing700 = new ARNode(Type.BUILDING, "700 Wing", polygon_data, 0, "You are in the 700 Wing. ");
+        ARNode wing700 = new ARNode(Type.BUILDING, "700 Wing", polygon_data, 0, "You are in the 700 Wing,");
         los_altos_high_school.addChildNode(wing700);
 
         polygon_data = "";
-        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 47.7, "All science buildings are on this floor. ");
+        ARNode wing700_floor1 = new ARNode(Type.FLOOR, "Science floor", polygon_data, 47.7, "first floor,");
         wing700.addChildNode(wing700_floor1);
 
         //polygon_data = "";
@@ -59,7 +59,7 @@ public class ARTree {
 
         //polygon_data = "37.38642893, -122.10951252, 37.38649573, -122.10958477, 37.38646007,-122.10937816, 37.38648869,-122.10947966, 37.38643915,-122.10937413, 37.38642285,-122.10940775, 37.38640919,-122.10934203, 37.38642432,-122.10935737, 37.38642893,-122.10951252";
         polygon_data = "37.386616, -122.109424, 37.386475, -122.109423, 37.386478, -122.109306, 37.386616, -122.109306, 37.386616, -122.109424";
-        ARNode wing700_floor1_room710 = new ARNode(Type.ROOM, "Room 710", polygon_data, 11, "You are in the first floor, Room 710. Enjoy your Chemistry or ASI classes with Mr. Dressen.");
+        ARNode wing700_floor1_room710 = new ARNode(Type.ROOM, "Room 710", polygon_data, 11, "Room 710. Enjoy your Chemistry or ASI classes with Mr. Dressen.");
         wing700_floor1.addChildNode(wing700_floor1_room710);
 
         //House
