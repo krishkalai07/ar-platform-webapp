@@ -211,7 +211,6 @@ public class ARTree {
             else {
                 locateList.add(node.toJSON());
             }
-            System.out.println("traverse: " + node.getName() + " " + node.getId());
         }
         for (ARNode child : node.getChildrenNodes()) {
             traverse(child, point, elevation);
