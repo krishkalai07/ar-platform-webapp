@@ -176,9 +176,9 @@ public class ARTree {
      * @return The structure node with the corresponding ID as <pre>id</pre>, or <pre>null</pre> if no node exists
      */
     private ARNode getNodeFromID(String id) {
-        System.out.println("Entered getNodeFromID " + id);
+        //System.out.println("Entered getNodeFromID " + id);
         for (ARNode node: rootNode.getChildrenNodes()) {
-            System.out.println("getNode " + node.getName() + " " + node.getId());
+            //System.out.println("getNode " + node.getName() + " " + node.getId());
             if (node.getId().equals(id)) {
                 return node;
             }
