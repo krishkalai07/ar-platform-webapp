@@ -160,6 +160,7 @@ public class ARTree {
         if (node != null) {
             System.out.println("locatePoint id: " + node.getId());
             locateList.clear();
+            System.out.println("List (clear): " + locateList);
             traverse(node, point, elevation);
             System.out.println("List: " + locateList);
         }
@@ -199,6 +200,7 @@ public class ARTree {
         System.out.println("Traverse children: " + node.getChildrenNodes());
         if (node.isInsidePolygon(point)) {
             if (node.getType() == Type.FLOOR) {
+                System.out.println("I should not be in here.");
                 if (node.isInFoor(elevation)) {
                     locateList.add(node.toJSON());
                 }
