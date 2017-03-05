@@ -36,17 +36,17 @@ public class MyResource {
     public Response getLocate(@Context UriInfo uriInfo, @PathParam("id") String id) {
         //System.out.println("ID: " + id);
         //System.out.println(arTree);
-        System.out.println("ID: " + id);
+        //System.out.println("ID: " + id);
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         String latitude = queryParams.getFirst("lati");
         String longitude = queryParams.getFirst("long");
         String elevation = queryParams.getFirst("elev");
 
-        System.out.println("lat: " + latitude + " lon: " + longitude + " elev: " + elevation);
+        //System.out.println("lat: " + latitude + " lon: " + longitude + " elev: " + elevation);
 
         GeoPoint point = new GeoPoint(latitude, longitude);
-        System.out.println("getLocate point " + point);
+        //System.out.println("getLocate point " + point);
         arTree.locatePoint(id, point, Double.parseDouble(elevation));
         return Response.status(200).entity(arTree.getLocateList().toString()).build();
     }

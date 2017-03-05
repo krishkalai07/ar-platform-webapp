@@ -158,9 +158,9 @@ public class ARTree {
         ARNode node = getNodeFromID(id);
 
         if (node != null) {
-            System.out.println("locatePoint id: " + node.getId());
+            //System.out.println("locatePoint id: " + node.getId());
             locateList.clear();
-            System.out.println("List (clear): " + locateList);
+            //System.out.println("List (clear): " + locateList);
             traverse(node, point, elevation);
             System.out.println("List: " + locateList);
         }
