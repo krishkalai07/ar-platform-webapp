@@ -163,6 +163,7 @@ public class ARTree {
             //System.out.println("List (clear): " + locateList);
             traverse(node, point, elevation);
             System.out.println("List: " + locateList);
+            System.out.println("Length " + locateList.size());
         }
         else {
             System.out.println("Node is null");
