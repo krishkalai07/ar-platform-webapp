@@ -153,7 +153,7 @@ public class ARTree {
      * @param elevation User's current elevation
      */
     public void locatePoint(String id, GeoPoint point, double elevation) {
-        System.out.println("Entered locatePoint");
+        //System.out.println("Entered locatePoint");
 
         ARNode node = getNodeFromID(id);
 
@@ -196,11 +196,11 @@ public class ARTree {
         if (node == null) {
             return;
         }
-        System.out.println("Traverse name: " + node.getName());
-        System.out.println("Traverse children: " + node.getChildrenNodes());
+        //System.out.println("Traverse name: " + node.getName());
+        //System.out.println("Traverse children: " + node.getChildrenNodes());
         if (node.isInsidePolygon(point)) {
             if (node.getType() == Type.FLOOR) {
-                System.out.println("I should not be in here.");
+                //System.out.println("I should not be in here.");
                 if (node.isInFoor(elevation)) {
                     locateList.add(node.toJSON());
                 }
