@@ -108,7 +108,7 @@ public class ARTree {
         rootNode.addChildNode(full_building);
 
         polygon_data = "37.329197, -121.886725, 37.328073, -121.888139, 37.327918, -121.888110, 37.327849, -121.887987, 37.327859, -121.887852, 37.328952, -121.886417, 37.329197, -121.886725";
-        ARNode south_hall = new ARNode(Type.BUILDING, "South Hall", polygon_data, 0, "Welcome to the Synopsis science fair in the South Hall. p");
+        ARNode south_hall = new ARNode(Type.BUILDING, "South Hall", polygon_data, 0, "Welcome to the Synopsis science fair in the South Hall.");
         full_building.addChildNode(south_hall);
 
         constructStructuresData();
@@ -157,9 +157,9 @@ public class ARTree {
 
         ARNode node = getNodeFromID(id);
 
+        locateList.clear();
         if (node != null) {
             //System.out.println("locatePoint id: " + node.getId());
-            locateList.clear();
             //System.out.println("List (clear): " + locateList);
             traverse(node, point, elevation);
             System.out.println("List: " + locateList);
