@@ -80,7 +80,7 @@ public class ARTree {
         ARNode living_area = new ARNode(Type.BUILDING, "LivingArea", polygon_data, 0, "Living area");
         the_house.addChildNode(living_area);
 
-        ARNode floor1 = new ARNode(Type.FLOOR, "Floor 1", "", 13.0, "First floor");
+        ARNode floor1 = new ARNode(Type.FLOOR, "Floor 1", "", 0, "First floor");
         living_area.addChildNode(floor1);
 
         polygon_data = "37.404178, -122.078906, 37.404119, -122.078909, 37.404113, -122.078743, 37.404175, -122.078738, 37.404178, -122.078906";
@@ -90,7 +90,7 @@ public class ARTree {
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
         ARNode living_room = new ARNode(Type.ROOM, "Living Room", polygon_data, 0, "Living Room");
         floor1.addChildNode(living_room);
-
+/*
         ARNode floor2 = new ARNode(Type.FLOOR, "Floor 2", "", 16.5, "Second floor");
         living_area.addChildNode(floor2);
 
@@ -101,7 +101,7 @@ public class ARTree {
         polygon_data = "37.404178, -122.078966, 37.404123, -122.078969, 37.404119, -122.078909, 37.404178, -122.078906, 37.404178, -122.078966";
         ARNode other_bedrooms = new ARNode(Type.ROOM, "OtherBedrooms", polygon_data, 0, "Other bedrooms");
         floor2.addChildNode(other_bedrooms);
-
+*/
         //South Hall (Fair location)
         polygon_data = "37.327869, -121.888824, 37.329413, -121.886721, 37.328937, -121.886134, 37.327229, -121.888344, 37.327869, -121.888824";
         ARNode full_building = new ARNode(Type.STRUCTURE, "San Jose Convention Center", polygon_data, 0, "You are in the San Jose Convention Center. ");
