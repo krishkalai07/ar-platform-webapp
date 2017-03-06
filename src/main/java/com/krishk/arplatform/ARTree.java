@@ -33,6 +33,8 @@ public class ARTree {
      * Constructs the AR Tree. The tree is construted only once since it is Singleton.
      */
     public ARTree() {
+        System.out.println("ARTree::Comstructor call");
+
         this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
         String polygon_data = "";
 
@@ -64,11 +66,11 @@ public class ARTree {
 
         //House
         polygon_data = "37.404406, -122.079025, 37.403889, -122.079055, 37.403893, -122.078698, 37.404378, -122.078683, 37.404406, -122.079025";
-        ARNode the_house = new ARNode(Type.STRUCTURE, "TheHouse", polygon_data, 0, "The house");
+        ARNode the_house = new ARNode(Type.STRUCTURE, "TheHouse", polygon_data, 0, "Contians 50 houses, ");
         rootNode.addChildNode(the_house);
 
         polygon_data = "37.404178, -122.078966, 37.404183, -122.079059, 37.404183, -122.079059, 37.404124, -122.078976";
-        ARNode front_yard = new ARNode(Type.BUILDING, "FrontYard", polygon_data, 0, "Front yard");
+        ARNode front_yard = new ARNode(Type.BUILDING, "FrontYard", polygon_data, 0, "Front yard with a tree ");
 
         polygon_data = "37.404115, -122.078849, 37.404116, -122.078803, 37.404177, -122.078794, 37.404176, -122.078853, 37.404115, -122.078849,";
         ARNode back_yard = new ARNode(Type.BUILDING, "BackYard", polygon_data, 0, "Back yard");
