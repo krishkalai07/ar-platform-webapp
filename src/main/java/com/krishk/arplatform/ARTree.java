@@ -34,7 +34,6 @@ public class ARTree {
      * Constructs the AR Tree. The tree is construted only once since it is Singleton.
      */
     public ARTree() {
-        System.out.println("ARTree::Comstructor call");
 
         this.rootNode = new ARNode(Type.PLATFORM, "Structures", "", 0, "");
         String polygon_data = "";
@@ -142,10 +141,7 @@ public class ARTree {
                 hexString.append(hex);
             }
             structuresETag = hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("MD5 failed me");
-            e.printStackTrace(System.out);
-        }
+        } catch (NoSuchAlgorithmException e) {}
     }
 
     /**
@@ -156,20 +152,11 @@ public class ARTree {
      * @param elevation User's current elevation
      */
     public void locatePoint(String id, GeoPoint point, double elevation) {
-        System.out.println("Entered locatePoint");
-
         ARNode node = getNodeFromID(id);
 
         locateList.clear();
         if (node != null) {
-            //System.out.println("locatePoint id: " + node.getId());
-            //System.out.println("List (clear): " + locateList);
             traverse(node, point, elevation);
-            System.out.println("List: " + locateList);
-            System.out.println("Length " + locateList.size());
-        }
-        else {
-            System.out.println("Node is null");
         }
     }
 
@@ -180,9 +167,7 @@ public class ARTree {
      * @return The structure node with the corresponding ID as <pre>id</pre>, or <pre>null</pre> if no node exists
      */
     private ARNode getNodeFromID(String id) {
-        //System.out.println("Entered getNodeFromID " + id);
         for (ARNode node: rootNode.getChildrenNodes()) {
-            //System.out.println("getNode " + node.getName() + " " + node.getId());
             if (node.getId().equals(id)) {
                 return node;
             }
@@ -200,13 +185,10 @@ public class ARTree {
         if (node == null) {
             return;
         }
-        System.out.println("Traverse name: " + node.getName());
-        //System.out.println("Traverse children: " + node.getChildrenNodes());
         if (node.isInsidePolygon(point)) {
             /*
             //TODO: Modify when elevation problem is fixed
             if (node.getType() == Type.FLOOR) {
-                //System.out.println("I should not be in here.");
                 if (node.isInFoor(elevation)) {
                     locateList.add(node.toJSON());
                 }
@@ -219,11 +201,8 @@ public class ARTree {
             }
             */
             locateList.add(node.toJSON());
-            System.out.println("adding node: " + node.getName());
-            System.out.println("list length: " + locateList.size());
         }
         for (ARNode child : node.getChildrenNodes()) {
-            System.out.println("Children node size: " + node.getChildrenNodes().size());
             traverse(child, point, elevation);
         }
     }
